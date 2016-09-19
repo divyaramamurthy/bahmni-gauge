@@ -37,6 +37,9 @@ public class BahmniPage {
         }
         return null;
     }
+    public WebElement findElement(By by) {
+        return driver.findElement(by);
+    }
 
     public void storePatientInSpecStore(Patient value) {
         DataStore specStore = DataStoreFactory.getSpecDataStore();

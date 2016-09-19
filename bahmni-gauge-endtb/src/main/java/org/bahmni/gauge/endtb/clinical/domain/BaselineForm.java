@@ -2,9 +2,6 @@ package org.bahmni.gauge.endtb.clinical.domain;
 
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 
-/**
- * Created by dharmens on 7/18/16.
- */
 public class BaselineForm extends ObservationForm {
 
     private String dateBaselineAssessment;

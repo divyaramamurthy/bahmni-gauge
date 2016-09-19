@@ -38,17 +38,21 @@ public class ObservationsPage extends BahmniPage {
         }
     }
 
-    public void expandObservationTemplate(String form){
-        for(WebElement template : observationTemplates){
-            if(template.getText().equalsIgnoreCase(form))
-                template.click();
+    public WebElement expandObservationTemplate(String templateId) {
+        WebElement template = driver.findElement(getSectionWithChildHavingId(templateId));
+        WebElement expandArrow = driver.findElement(By.cssSelector("#Patient_Vitals h2 i.fa-caret-right:not(.ng-hide)"));
+        if(null!=expandArrow){
+            expandArrow.click();
         }
+        waitForSpinner();
+        return template;
     }
 
     public void clickTemplateButton(){
         addFormbutton.click();
     }
 
+    @Deprecated
     public void fillTemplateData(Table table, ObservationForm form){
 
         WebElement observ_label = null;
@@ -76,5 +80,9 @@ public class ObservationsPage extends BahmniPage {
 
             }
         }
+    }
+
+    private By getSectionWithChildHavingId(String templateId) {
+        return By.xpath("//div[contains(@class,\" section-grid\") and descendant::*[@id=\"" + templateId + "\"]]");
     }
 }

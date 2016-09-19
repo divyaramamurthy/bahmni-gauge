@@ -3,42 +3,28 @@ package org.bahmni.gauge.possible.specs;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
-import com.thoughtworks.gauge.TableRow;
-import org.bahmni.gauge.common.BahmniPage;
-import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
-import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
-import org.bahmni.gauge.possible.clinical.PossibleObservationPage;
-import org.bahmni.gauge.possible.clinical.domain.PatientVitals;
+import org.bahmni.gauge.possible.clinical.domain.ObservationForm;
+import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
-/**
- * Created by dharmens on 9/5/16.
- */
 public class PossibleObservationSpec {
+    private final ObservationsPage page;
+
+    public PossibleObservationSpec() {
+        this.page = PageFactory.get(ObservationsPage.class);
+    }
 
     @BeforeClassSteps
     public void waitForAppReady() {
-        BahmniPage.waitForSpinner(DriverFactory.getDriver());
+        page.waitForSpinner();
     }
 
-    @Step("Fill patient vitals form <table>")
-    public void enterDataInPatientVitalsForm(Table table) {
-        ObservationsPage observationPage = PageFactory.get(ObservationsPage.class);
-        PatientVitals patientVitals = transformTableToPatientVitals(table);
-        observationPage.fillTemplateData(table, patientVitals);
-        new BahmniPage().storeObservationFormInSpecStore(patientVitals);
+    @Step("In <templateName> form, fill up the following details <table>")
+    public void enterDataInPatientVitalsForm(String templateId, Table table) {
+        WebElement template = page.expandObservationTemplate(templateId);
+        ObservationForm observationForm = new ObservationForm(template);
+        observationForm.fillUp(table);
     }
 
-    private PatientVitals transformTableToPatientVitals(Table table) {
-        List<TableRow> rows = table.getTableRows();
-        List<String> columnNames = table.getColumnNames();
-        if (rows.size() != 1) {
-            throw new TestSpecException("Only one patient should be provided in the table");
-        }
-        PatientVitals baselineForm = new PossibleObservationPage().transformTableRowToBaselineForm(rows.get(0), columnNames);
-        return baselineForm;
-    }
 }

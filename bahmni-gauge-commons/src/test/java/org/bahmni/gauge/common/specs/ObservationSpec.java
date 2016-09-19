@@ -77,18 +77,12 @@ public class ObservationSpec extends BahmniPage {
     }
 
     @Step("Verify display control <displayControlName> on dashboard, has the following details <table>")
-    public void verifyDisplayControlContent(String name,Table table){
+    public void verifyDisplayControlContent(String displayControlName,Table table){
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-        String displayControlText = dashboardPage.getDisplayControl(name).getText();
+        String displayControlText = dashboardPage.getDisplayControlText(displayControlName);
         for (String drugOrder : table.getColumnValues("details")) {
             Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
         }
-    }
-
-    @Step("Expand the form <template>")
-    public void expandForm(String template){
-        ObservationsPage obsPage = PageFactory.get(ObservationsPage.class);
-        obsPage.expandObservationTemplate(template);
     }
 
     @Step("Close the app")

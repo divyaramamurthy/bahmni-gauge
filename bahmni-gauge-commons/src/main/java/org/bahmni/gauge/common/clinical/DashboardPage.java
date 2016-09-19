@@ -75,7 +75,9 @@ public class DashboardPage extends BahmniPage {
 		return String.format("%.1f", days.getDays() / 30.0F);
 	}
 
-	public WebElement getDisplayControl(String displayControlName) {
-		return find(displayControls, displayControlName);
-	}
+	public String getDisplayControlText(String displayControlName) {
+		WebElement displayControl = findElement(By.id(displayControlName));
+        waitForSpinner();
+		return displayControl.getText().replace("\n","");
+    }
 }

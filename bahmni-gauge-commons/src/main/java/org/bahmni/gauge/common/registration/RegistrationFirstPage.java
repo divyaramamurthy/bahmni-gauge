@@ -94,6 +94,7 @@ public class RegistrationFirstPage extends BahmniPage {
 	}
 
 	public void registerPatient(Patient patient) throws InterruptedException {
+		waitForSpinner();
 		if(enterID_checkbox.isDisplayed() & patient.getIdNumber()!= null) {
 			enterID_checkbox.click();
 			txtRegistrationNumber.sendKeys(patient.getIdNumber());

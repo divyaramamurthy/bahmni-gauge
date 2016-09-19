@@ -1,14 +1,9 @@
 Recording Observations
 ======================
-Created by dharmens on 9/5/16
+Tags: regression, sanity, test, recordObservationsForPatients
 
-This is an executable specification file which follows markdown syntax.
-Every heading in this file denotes a scenario. Every bulleted point denotes a step.
-     
 Record Observations for patient
 -------------------------------
-
-Tags: regression, sanity, test
 
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
@@ -23,12 +18,30 @@ Tags: regression, sanity, test
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"
 * Navigate to consultation
-* Expand the form "Patient Vitals"
-* Fill patient vitals form
-    |Systolic|Diastolic|Posture|Temperature|Heart Rate|Respiratory Rate|Oxygen Saturation|Weight|
-    |150|85|Sitting|110|75|15|90|140|
+* In "Patient_Vitals" form, fill up the following details
+
+    |key|value|
+    |---|-----|
+    |Systolic|150|
+    |Diastolic|85|
+    |Posture|Sitting|
+    |Temperature|110|
+    |Heart Rate|75|
+    |Respiratory Rate|15|
+    |Oxygen Saturation|90|
+    |Weight|140|
 
 * Save the consultation
 * Navigate to patient dashboard
-* Verify observations recorded under "Patient_Vitals"
+* Verify display control "Vitals" on dashboard, has the following details
 
+    |details|
+    |-------|
+    |Systolic (120 - 140)150mmHg|
+    |Diastolic (80 - 90)85mmHg|
+    |PostureSitting|
+    |Temperature (98 - 100)110F|
+    |Heart Rate (60 - 100)75per min|
+    |Respiratory Rate (12 - 20)15per min|
+    |Oxygen Saturation (95 - 100)90%|
+    |Weight140kg|

@@ -1,17 +1,20 @@
 package org.bahmni.gauge.possible.specs;
 
-import org.bahmni.gauge.common.DriverFactory;
+import com.thoughtworks.gauge.Step;
+import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.specs.RegistrationFirstPageSpec;
 import org.bahmni.gauge.possible.registration.PossibleRegistrationFirstPage;
-import org.openqa.selenium.WebDriver;
 
 public class PossibleRegistrationFirstPageSpec extends RegistrationFirstPageSpec {
 
-    private WebDriver driver;
-
     public PossibleRegistrationFirstPageSpec() {
-        this.driver = DriverFactory.getDriver();
+        super();
         this.registrationFirstPage = PageFactory.get(PossibleRegistrationFirstPage.class);
+    }
+
+    @Step("Create the following patient <table>")
+    public void createPatients(Table table) throws Exception {
+        this.registrationFirstPage.createPatients(table);
     }
 }
