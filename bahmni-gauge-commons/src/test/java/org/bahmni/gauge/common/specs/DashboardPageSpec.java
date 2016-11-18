@@ -23,12 +23,10 @@ public class DashboardPageSpec {
 
 	DashboardPage dashboardPage;
 
-	public DashboardPageSpec() {
-		dashboardPage=PageFactory.get(DashboardPage.class);
-	}
-
 	@BeforeClassSteps
 	public void waitForAppReady() {
+
+		dashboardPage=PageFactory.get(DashboardPage.class);
 		dashboardPage.waitForSpinner();
 	}
 
@@ -107,8 +105,8 @@ public class DashboardPageSpec {
 
 	@Step("Ensure that the program is updated on patient program dashboard")
 	public void verifyProgramUpdatedOnDashboard(){
-		Program program=PageFactory.getProgramManagementPage().getProgramFromSpecStore();
-		PageFactory.getProgramDashboardPage().validateProgramsDisplayControl(program);
+		Program program=dashboardPage.getProgramFromSpecStore();
+		dashboardPage.validateProgramsDisplayControl(program);
 	}
 
 	@Step("Verify details on dashboard <Programs> display control")

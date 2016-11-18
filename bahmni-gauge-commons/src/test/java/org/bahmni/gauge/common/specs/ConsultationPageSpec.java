@@ -12,11 +12,14 @@ public class ConsultationPageSpec {
     ConsultationPage consultationPage;
 
     public ConsultationPageSpec(){
-        consultationPage = PageFactory.getConsultationPage();
+
 
     }
     @BeforeClassSteps
-    public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
+    public void waitForAppReady(){
+        consultationPage = PageFactory.get(ConsultationPage.class);
+        consultationPage.waitForSpinner();
+    }
 
     @Step("Save the consultation")
     public void saveConsultation(){

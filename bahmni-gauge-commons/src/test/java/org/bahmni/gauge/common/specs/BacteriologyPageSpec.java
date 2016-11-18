@@ -20,7 +20,7 @@ public class BacteriologyPageSpec{
     BacteriologyPage bacteriologyPage;
 
     public BacteriologyPageSpec(){
-        bacteriologyPage= PageFactory.getBacteriologyPage();
+        bacteriologyPage= PageFactory.get(BacteriologyPage.class);
 
     }
 

@@ -16,38 +16,30 @@ import org.openqa.selenium.WebDriver;
 
 
 public class RegistrationVisitPageSpec {
-    private final WebDriver driver;
-
-    public RegistrationVisitPageSpec() {
-        this.driver = DriverFactory.getDriver();
-    }
-
+    RegistrationVisitDetailsPage registrationVisitPage;
     @BeforeClassSteps
     public void waitForAppReady() {
-        BahmniPage.waitForSpinner(driver);
+        registrationVisitPage=PageFactory.get(RegistrationVisitDetailsPage.class);
+        registrationVisitPage.waitForSpinner();
     }
 
     @Step("Close visit")
     public void closeVisit() {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
-        registrationVisitPage.closeVisit(driver);
+        registrationVisitPage.closeVisit();
     }
 
     @Step("Try close visit")
     public void tryCloseVisit() {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.tryCloseVisit();
     }
 
     @Step("Navigate to latest visit page")
     public void navigateToVisit() {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.openLastVisit();
     }
 
     @Step("Verify display control <displayControl> on visit page, has the following details <table>")
     public void verifyDisplayControlOnVisitPage(String displayControl, Table table) {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         String displayControlText = registrationVisitPage.getDisplayControlText(displayControl);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
@@ -57,7 +49,6 @@ public class RegistrationVisitPageSpec {
 
     @Step("Verify display control with Caption <displayControlCaption> on visit page, has the following details <table>")
     public void verifyDisplayControlOnVisitPageWithCaption(String displayControlCaption, Table table) {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         String displayControlText = registrationVisitPage.getDisplayControlTextWithCaption(displayControlCaption);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
@@ -71,14 +62,12 @@ public class RegistrationVisitPageSpec {
     }
     @Step("Verify Error popup with message <message> is displayed")
     public void verifyErrorOnPageWithMessage(String message){
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.waitForElementOnPage(By.cssSelector(".error-message-container"));
         Assert.assertEquals("Error popup message dont match",message,registrationVisitPage.findElement(By.cssSelector("#view-content .msg")).getText());
     }
 
     @Step("Open visit for previous patient using api <table>")
     public void openVisitThroughApi(Table table){
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.getPatientFromSpecStore().setLocation(table.getColumnValues("location").get(0));
         registrationVisitPage.getPatientFromSpecStore().setVisitType(table.getColumnValues("type").get(0));
         BahmniRestClient.get().create(registrationVisitPage.getPatientFromSpecStore(),"visit");
@@ -86,7 +75,6 @@ public class RegistrationVisitPageSpec {
 
     @Step("Open <tabCaption> tab on visit page")
     public void openTab(String tabCaption){
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.openTab(tabCaption);
     }
 

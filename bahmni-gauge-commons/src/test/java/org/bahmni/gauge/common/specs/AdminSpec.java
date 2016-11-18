@@ -16,7 +16,7 @@ public class AdminSpec  {
     private AdminPage adminPage;
 
     public AdminSpec(){
-        adminPage = PageFactory.getAdminPage();
+        adminPage = PageFactory.get(AdminPage.class);
     }
 
     @BeforeClassSteps

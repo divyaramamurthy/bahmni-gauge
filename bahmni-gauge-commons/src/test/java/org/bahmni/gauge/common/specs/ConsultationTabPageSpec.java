@@ -17,7 +17,7 @@ public class ConsultationTabPageSpec{
     ConsultationTabPage consultationTabPage;
 
     public ConsultationTabPageSpec(){
-       consultationTabPage= PageFactory.getConsultationTabPage();
+       consultationTabPage= PageFactory.get(ConsultationTabPage.class);
     }
 
     @BeforeClassSteps

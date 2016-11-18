@@ -15,12 +15,10 @@ import java.util.List;
  */
 public class OrdersFulfillmentPageSpec {
     OrdersFulfillmentPage ordersFulfillmentPage;
-    public OrdersFulfillmentPageSpec()
-    {
-        ordersFulfillmentPage=PageFactory.getOrdersFulfillmentPage();
-    }
+
     @BeforeClassSteps
     public void waitForAppReady(){
+        ordersFulfillmentPage=PageFactory.get(OrdersFulfillmentPage.class);
         ordersFulfillmentPage.waitForSpinner();
     }
 
