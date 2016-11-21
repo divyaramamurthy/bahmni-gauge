@@ -46,6 +46,11 @@ public class BahmniPage {
         return null;
     }
 
+    public void deleteAllCookies(){
+        driver.manage().deleteAllCookies();
+
+    }
+
     public void get(String url){
         driver.get(url);
     }
@@ -204,7 +209,7 @@ public class BahmniPage {
         return StoreHelper.getLatest(PatientProgram.class);
     }
 
-    public void closeApp(WebDriver driver) {
+    public void closeApp() {
         driver.quit();
     }
 

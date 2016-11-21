@@ -22,22 +22,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ObservationSpec extends BaseSpec{
-    private final WebDriver driver;
-
-    public ObservationSpec() {
-        driver = DriverFactory.getDriver();
-    }
+public class ObservationSpec{
+    ObservationsPage observationsPage;
 
     @BeforeClassSteps
     public void waitForAppReady() {
-        BahmniPage.waitForSpinner(DriverFactory.getDriver());
+        observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.waitForSpinner();
     }
 
 
     @Step("Select the template <template> from on the observation page")
     public void clickOnTreatmentEnrollment(String template) throws InterruptedException {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.selectTemplate(template.replace(" ", "_"));
         waitForAppReady();
     }
@@ -46,7 +42,7 @@ public class ObservationSpec extends BaseSpec{
     public void enterTemplateValues(String template, Table table) throws InterruptedException {
         ObservationForm observationForm = null;
         if(template.toLowerCase().contains("obstetrics"))
-            observationForm = new ObservationForm(driver.findElement(By.cssSelector("#concept-set-3")));
+            observationForm = new ObservationForm(observationsPage.findElement(By.cssSelector("#concept-set-3")));
         observationForm.fillUp(table);
         waitForAppReady();
     }
@@ -140,19 +136,17 @@ public class ObservationSpec extends BaseSpec{
 
     @Step("Close the app")
     public void closeApplication() {
-        new BahmniPage().closeApp(driver);
+        observationsPage.closeApp();
     }
 
     @Step("Fill <Vitals> template with following observation details <table>")
     public void enterObservations(String template,Table table){
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
         observationsPage.enterObservations(template,table);
 //        storeObservationFormInSpecStore(observationForm);
     }
 
     @Step("Navigate back to program dashboard")
     public void navigateBackToDashboard(){
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
         observationsPage.navigateToDashboard();
         waitForAppReady();
     }

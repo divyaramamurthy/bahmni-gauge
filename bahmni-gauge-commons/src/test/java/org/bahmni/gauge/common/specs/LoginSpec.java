@@ -10,34 +10,31 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginSpec {
 
-	private final WebDriver driver;
-
-	public LoginSpec(){
-		this.driver = DriverFactory.getDriver();
-	}
+	LoginPage loginPage;
 
 	@BeforeClassSteps
 	public void waitForAppReady(){
-		BahmniPage.waitForSpinner(driver);
+		loginPage = PageFactory.get(LoginPage.class);
+
+		loginPage.waitForSpinner();
 	}
 
 	@Step("On the login page")
 	public void navigateToLoginPage() {
-		driver.manage().deleteAllCookies();
-        driver.get(PageFactory.get(LoginPage.class).LOGIN_URL);
+		loginPage.deleteAllCookies();
+		loginPage.get(loginPage.LOGIN_URL);
     }
 
 	@Step("Login with username <username> and password <password>")
 	public void login(String username, String password){
-        LoginPage loginPage = PageFactory.get(LoginPage.class);
-		loginPage.waitForElementOnPage(driver,"#username");
+		loginPage.waitForElementOnPage("#username");
 		loginPage.login(System.getenv(username), System.getenv(password));
     }
 
 	@Step("Login with username <username> and password <password> with location <location>")
 	public void login(String username, String password, String location){
         LoginPage loginPage = PageFactory.get(LoginPage.class);
-		loginPage.waitForElementOnPage(driver,"#username");
+		loginPage.waitForElementOnPage("#username");
 		loginPage.login(System.getenv(username), System.getenv(password), System.getenv(location));
 	}
 

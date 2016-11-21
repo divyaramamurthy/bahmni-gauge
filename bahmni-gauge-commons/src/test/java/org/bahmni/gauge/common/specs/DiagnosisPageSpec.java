@@ -6,6 +6,7 @@ import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.DiagnosisPage;
 import org.bahmni.gauge.common.clinical.domain.Diagnosis;
 import org.bahmni.gauge.data.StoreHelper;
@@ -17,10 +18,13 @@ import java.util.List;
 /**
  * Created by atmaramn on 01/11/2016.
  */
-public class DiagnosisPageSpec extends BahmniPage {
+public class DiagnosisPageSpec {
+    DiagnosisPage diagnosisPage;
 
     @BeforeClassSteps
-    public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
+    public void waitForAppReady(){
+        diagnosisPage= PageFactory.get(DiagnosisPage.class);
+        diagnosisPage.waitForSpinner();}
 
     @Step("Add following diagnosis <table>")
     public void addCodedDiagnosis(Table table){
@@ -34,7 +38,7 @@ public class DiagnosisPageSpec extends BahmniPage {
     public void verifyDiagnosesOnCurrentDiagnosis(){
         DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
 
-        diagnosisPage.verifyCurrentDisplayControl(getPatientFromSpecStore().getDiagnoses());
+        diagnosisPage.verifyCurrentDisplayControl(diagnosisPage.getPatientFromSpecStore().getDiagnoses());
     }
 
     @Step("Edit the following diagnosis <table>")
@@ -56,8 +60,8 @@ public class DiagnosisPageSpec extends BahmniPage {
     @Step("Add diagnosis through API <table>")
     public void addDiagnosisAPI(Table table){
         List<Diagnosis> diagnoses = TableTransformer.asEntityList(table,Diagnosis.class);
-        getPatientFromSpecStore().setDiagnoses(diagnoses);
-        BahmniRestClient.get().create(getPatientFromSpecStore(),"bahmnicore/bahmniencounter");
+        diagnosisPage.getPatientFromSpecStore().setDiagnoses(diagnoses);
+        BahmniRestClient.get().create(diagnosisPage.getPatientFromSpecStore(),"bahmnicore/bahmniencounter");
     }
 
 }

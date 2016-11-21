@@ -17,24 +17,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class InpatientSpec extends BaseSpec{
+public class InpatientSpec{
     private final String BED_ASSIGN_FAILURE = "Bed assignment failed.";
-    private final WebDriver driver;
-
-    public InpatientSpec() {
-        this.driver = DriverFactory.getDriver();
-    }
+    InpatientDashboard dashboardPage;
 
     @BeforeClassSteps
     public void waitForAppReady() {
-        BahmniPage.waitForSpinner(driver);
+        dashboardPage = PageFactory.get(InpatientDashboard.class);
+        dashboardPage.waitForSpinner();
     }
 
     @Step("Select <movement> from Patient Movement and click <Action> button")
     public void movePatient(String movement,String action){
         DispositionPage disposition = PageFactory.get(DispositionPage.class);
         disposition.captureDataForDisposition(movement);
-        InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         WebElement actionElement = dashboardPage.findButtonByText(action);
         actionElement.click();
         if(movement.toLowerCase().contains("admit") || movement.toLowerCase().contains("undo discharge"))
@@ -48,7 +44,6 @@ public class InpatientSpec extends BaseSpec{
     public void movePatientWithNotes(String movement,String action,String notes){
         DispositionPage disposition = PageFactory.get(DispositionPage.class);
         disposition.captureDataForDisposition(movement);
-        InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         dashboardPage.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(notes);
         WebElement actionElement = dashboardPage.findButtonByText(action);
         actionElement.click();
@@ -82,13 +77,11 @@ public class InpatientSpec extends BaseSpec{
 
     @Step("Ensure inpatient icon exists on Patient Profile display control")
     public void ensureAdmitted(){
-        InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         Assert.assertTrue("inpatient icon doesn't exist", dashboardPage.isAdmitted());
     }
 
     @Step("Verify display control <displayControlId> on inpatient dashboard, has the following details <table>")
     public void verifyDisplayControlContent(String displayControlId, Table table) {
-        InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         String displayControlText = dashboardPage.getDisplayControlText(displayControlId);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
@@ -98,17 +91,15 @@ public class InpatientSpec extends BaseSpec{
 
     @Step("Verify display control with Caption <displayControlCaption> on inpatient dashboard, has the following details <table>")
     public void verifyDisplayControlContentWithCaption(String displayControlCaption, Table table) {
-        InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         String displayControlText = dashboardPage.getDisplayControlTextWitCaption(displayControlCaption);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(displayControlText,drugOrder),displayControlText.contains(drugOrder));
         }
     }
 
     @Step("Ensure inpatient icon does not exist on Patient Profile display control")
     public void ensureNotAdmitted(){
-        InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         Assert.assertFalse("inpatient icon exists", dashboardPage.isAdmitted());
     }
 
