@@ -12,13 +12,12 @@ public class ConsultationPageSpec {
     ConsultationPage consultationPage;
 
     public ConsultationPageSpec(){
-
-
+        consultationPage = PageFactory.get(ConsultationPage.class);
     }
     @BeforeClassSteps
     public void waitForAppReady(){
-        consultationPage = PageFactory.get(ConsultationPage.class);
         consultationPage.waitForSpinner();
+        consultationPage = PageFactory.get(ConsultationPage.class);
     }
 
     @Step("Save the consultation")

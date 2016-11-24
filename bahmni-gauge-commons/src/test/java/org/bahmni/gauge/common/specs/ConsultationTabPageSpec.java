@@ -21,7 +21,10 @@ public class ConsultationTabPageSpec{
     }
 
     @BeforeClassSteps
-    public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
+    public void waitForAppReady(){
+        consultationTabPage.waitForSpinner();
+        consultationTabPage= PageFactory.get(ConsultationTabPage.class);
+    }
 
     @Step("Verify Disposition details on consultation tab")
     public void verifyDisposition(){

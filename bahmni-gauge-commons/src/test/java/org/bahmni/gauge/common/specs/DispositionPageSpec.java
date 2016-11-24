@@ -11,18 +11,23 @@ import org.bahmni.gauge.common.clinical.DispositionPage;
 public class DispositionPageSpec {
     private DispositionPage dispositionPage;
 
-    @BeforeClassSteps
-    public void waitForAppReady(){
+    public DispositionPageSpec() {
         dispositionPage = PageFactory.get(DispositionPage.class);
-        dispositionPage.waitForSpinner();}
+    }
+
+    @BeforeClassSteps
+    public void waitForAppReady() {
+        dispositionPage.waitForSpinner();
+        dispositionPage = PageFactory.get(DispositionPage.class);
+    }
 
     @Step("Select <Disposition Type> disposition")
-    public void captureDataForDisposition(String dispositionType){
+    public void captureDataForDisposition(String dispositionType) {
         dispositionPage.captureDataForDisposition(dispositionType);
     }
 
     @Step("Select <Disposition Type> disposition with notes <notes>")
-    public void captureDataForDisposition(String dispositionType, String notes){
-        dispositionPage.captureDataForDisposition(dispositionType,notes);
+    public void captureDataForDisposition(String dispositionType, String notes) {
+        dispositionPage.captureDataForDisposition(dispositionType, notes);
     }
 }

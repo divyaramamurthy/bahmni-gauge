@@ -3,6 +3,7 @@ package org.bahmni.gauge.common;
 import com.thoughtworks.gauge.TableRow;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
@@ -39,24 +40,23 @@ public class BahmniPage {
 
     protected static WebElement find(Collection<WebElement> elements, String elementText) {
         for (WebElement element : elements) {
-            if(element.getText().contains(elementText)){
+            if (element.getText().contains(elementText)) {
                 return element;
             }
         }
         return null;
     }
 
-    public void deleteAllCookies(){
-        driver.manage().deleteAllCookies();
-
+    public WebDriver getWebDriver() {
+        return driver;
     }
 
-    public void get(String url){
+    public void get(String url) {
         driver.get(url);
     }
 
     public void storePatientInSpecStore(Patient value) {
-        StoreHelper.store(Patient.class,value);
+        StoreHelper.store(Patient.class, value);
     }
 
     public Patient getPatientFromSpecStore() {
@@ -69,13 +69,13 @@ public class BahmniPage {
     }
 
     public void storeProgramInSpecStore(Program program) {
-        StoreHelper.store(Program.class,program);
+        StoreHelper.store(Program.class, program);
     }
 
     public void storeBaselineFormInSpecStore(ObservationForm baselineForm) {
 //        DataStore specStore = DataStoreFactory.getSpecDataStore();
 //        specStore.put(BASELINE_KEY, baselineForm);
-        StoreHelper.store(ObservationForm.class,baselineForm);
+        StoreHelper.store(ObservationForm.class, baselineForm);
     }
 
     public void storeDrugOrderInSpecStore(List<DrugOrder> drugOrder) {
@@ -85,11 +85,14 @@ public class BahmniPage {
 
     //@Deprecated
     public static void waitForSpinner(WebDriver driver) {
-        try {
+        if (driver.findElement(By.cssSelector("#overlay")).isDisplayed()) {
             waitForElement(driver, ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#overlay")));
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+//            JavascriptExecutor js = ((JavascriptExecutor) getCurrentDriver());
+//            js.executeScript("scrollBy(0,2500)");
+//            Thread.sleep(1500);
+
+
         }
     }
 
@@ -111,7 +114,7 @@ public class BahmniPage {
         driver.findElement(By.cssSelector(".error-message-container .show-btn")).click();
     }
 
-    public void validateSystemException(WebDriver driver) {
+    public void validateSystemException() {
         Assert.assertNotNull(driver.findElement(By.cssSelector(".error-message-container .show-btn")));
     }
 
@@ -181,7 +184,7 @@ public class BahmniPage {
     }
 
     public void storeObservationFormInSpecStore(ObservationForm observation) {
-        StoreHelper.store(ObservationForm.class,observation);
+        StoreHelper.store(ObservationForm.class, observation);
     }
 
     public ObservationForm getObservationFormInSpecStore() {
@@ -190,7 +193,7 @@ public class BahmniPage {
 
     public void storeOrderSetInSpecStore(OrderSet orderSet) {
 
-        StoreHelper.store(OrderSet.class,orderSet);
+        StoreHelper.store(OrderSet.class, orderSet);
     }
 
     public OrderSet getOrderSetInSpecStore() {
@@ -200,7 +203,7 @@ public class BahmniPage {
     public void storePatientProgramInSpecStore(PatientProgram patientProgram) {
 //        DataStore specStore = DataStoreFactory.getSpecDataStore();
 //        specStore.put(PATIENT_PROGRAM_KEY, patientProgram);
-        StoreHelper.store(PatientProgram.class,patientProgram);
+        StoreHelper.store(PatientProgram.class, patientProgram);
     }
 
     public PatientProgram getPatientProgramFromSpecStore() {
@@ -217,23 +220,24 @@ public class BahmniPage {
         driver.get(HomePage.URL);
         dismissAlert(driver);
     }
-    private static boolean propertyExists (Object object, String property) {
+
+    private static boolean propertyExists(Object object, String property) {
         return PropertyUtils.isReadable(object, property) && PropertyUtils.isWriteable(object, property);
     }
 
     /**
-     *
-     * @deprecated Use the methods in TableTransformer class in org.bahmni.gauge.util package accordingly
+     * @deprecated Use the methods in TableTransformer class in org.bahmni.gauge.util package
+     * accordingly
      */
     @Deprecated
-    public Object transform(TableRow row,Object object, List<String> headers){
+    public Object transform(TableRow row, Object object, List<String> headers) {
         for (String header : headers) {
             String value = row.getCell(header);
             try {
-                if(propertyExists(object,header)){
+                if (propertyExists(object, header)) {
                     BeanUtils.setProperty(object, header, TableTransformer.fieldTransform(value));
                 } else {
-                    throw new Exception("Property :"+header+" not found in "+object.getClass());
+                    throw new Exception("Property :" + header + " not found in " + object.getClass());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -241,51 +245,57 @@ public class BahmniPage {
         }
         return object;
     }
+
     public void setDriver(WebDriver driver) {
         this.driver = driver;
     }
 
     public WebElement findElement(By by) {
-        return findElement(driver,by);
+        return findElement(driver, by);
     }
-    public Boolean hasElement(By child){
-        return hasElement(driver,child);
+
+    public Boolean hasElement(By child) {
+        return hasElement(driver, child);
     }
 
     public static WebElement findElement(WebDriver driver, By by) {
         waitForSpinner(driver);
-        try{
+        try {
             return driver.findElement(by);
         } catch (NoSuchElementException e) {
-            System.err.println("No Element found for :"+by);
+            System.err.println("No Element found for :" + by);
             System.err.println(e.getMessage());
             return null;
         }
     }
-    public static boolean hasElement(WebDriver driver, By child){
+
+    public static boolean hasElement(WebDriver driver, By child) {
         waitForSpinner(driver);
-        try{
+        try {
             return null != driver.findElement(child);
         } catch (NoSuchElementException e) {
             return false;
         }
     }
+
     public static WebElement findChild(WebElement parent, By child) {
-        try{
+        try {
             return parent.findElement(child);
         } catch (NoSuchElementException e) {
-            System.err.println("No Element found for :"+child);
+            System.err.println("No Element found for :" + child);
             System.err.println(e.getMessage());
             return null;
         }
     }
-    public static boolean hasChild(WebElement parent, By child){
-        try{
+
+    public static boolean hasChild(WebElement parent, By child) {
+        try {
             return null != parent.findElement(child);
         } catch (NoSuchElementException e) {
             return false;
         }
     }
+
     public WebElement findButtonByText(String text) {
         return findElement(By.xpath("//button[contains(text(),'" + text + "')]"));
     }
@@ -296,42 +306,44 @@ public class BahmniPage {
      * text - will contain the value in the element
      */
     public WebElement findElementByText(String elementType, String text) {
-        return findElement(By.xpath("//"+elementType+"[contains(text(),'" + text + "')]"));
+        return findElement(By.xpath("//" + elementType + "[contains(text(),'" + text + "')]"));
     }
 
-    public BahmniTable extractTableDataFrom(By locator){
-        List<WebElement> columnHeaders=findElement(locator).findElements(By.cssSelector("th"));
-        ArrayList<String> columns=new ArrayList<>();
+    public BahmniTable extractTableDataFrom(By locator) {
+        List<WebElement> columnHeaders = findElement(locator).findElements(By.cssSelector("th"));
+        ArrayList<String> columns = new ArrayList<>();
 
-        for (WebElement ele:columnHeaders
-             ) {
+        for (WebElement ele : columnHeaders
+                ) {
             columns.add(ele.getText());
         }
-        BahmniTable table=new BahmniTable(columns);
-        List<WebElement> rows=findElement(locator).findElements(By.cssSelector("tr"));
+        BahmniTable table = new BahmniTable(columns);
+        List<WebElement> rows = findElement(locator).findElements(By.cssSelector("tr"));
 
-        for (WebElement row:rows
-             ) {
-                ArrayList<String> cells=new ArrayList<>();
+        for (WebElement row : rows
+                ) {
+            ArrayList<String> cells = new ArrayList<>();
 
-                for (WebElement cell:row.findElements(By.cssSelector("td"))
-                        ) {
-                    cells.add(cell.getText());
-                }
-            if(cells.size()>0)
+            for (WebElement cell : row.findElements(By.cssSelector("td"))
+                    ) {
+                cells.add(cell.getText());
+            }
+            if (cells.size() > 0)
                 table.addRow(cells);
 
         }
         return table;
     }
-    public void scrollToTop(){
+
+    public void scrollToTop() {
         JavascriptExecutor js = ((JavascriptExecutor) driver);
 
         //scrolling
         js.executeScript("window.scrollTo(0,0)");
 
     }
-    public void scrollToBottom(){
+
+    public void scrollToBottom() {
         JavascriptExecutor js = ((JavascriptExecutor) driver);
 
         //scrolling
@@ -340,9 +352,9 @@ public class BahmniPage {
     }
 
     protected void uploadFile(String s) throws AWTException, IOException {
-        String sPath=new java.io.File( "." ).getCanonicalPath() + "/src/main/resources/upload/" +s;
+        String sPath = new java.io.File(".").getCanonicalPath() + "/src/main/resources/upload/" + s;
         File file = new File(sPath);
-        StringSelection stringSelection=new StringSelection(file.getAbsolutePath());
+        StringSelection stringSelection = new StringSelection(file.getAbsolutePath());
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
         Robot robot = new Robot();

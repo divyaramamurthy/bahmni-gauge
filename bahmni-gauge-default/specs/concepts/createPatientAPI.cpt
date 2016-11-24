@@ -16,3 +16,11 @@
     |type|diagnosis|order|certainty|status|
     |coded|Anemia, pernicious|Primary|CONFIRMED|Active|
     |noncoded|High Blood Pressure|Primary|Confirmed|Active|
+
+
+# Create patient and open visit with details through API
+
+* Create a new patient and open visit through API
+* Enter visit details through API
+   |height|weight|registrationFee|
+   |172|67|200|

@@ -23,10 +23,15 @@ public class ProgramManagementSpec {
 
 	protected ProgramManagementPage programManagementPage = null;
 
+	public ProgramManagementSpec() {
+		programManagementPage = PageFactory.get(ProgramManagementPage.class);
+
+	}
+
 	@BeforeClassSteps
 	public void waitForAppReady(){
-		programManagementPage = PageFactory.get(ProgramManagementPage.class);
 		programManagementPage.waitForSpinner();
+		programManagementPage = PageFactory.get(ProgramManagementPage.class);
 	}
 
 	@Step("Register the patient to following program <programDetails>")

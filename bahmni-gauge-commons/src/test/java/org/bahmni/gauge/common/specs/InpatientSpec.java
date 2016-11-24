@@ -21,10 +21,16 @@ public class InpatientSpec{
     private final String BED_ASSIGN_FAILURE = "Bed assignment failed.";
     InpatientDashboard dashboardPage;
 
-    @BeforeClassSteps
-    public void waitForAppReady() {
+    public InpatientSpec() {
         dashboardPage = PageFactory.get(InpatientDashboard.class);
+
+    }
+
+    @BeforeClassSteps
+
+    public void waitForAppReady() {
         dashboardPage.waitForSpinner();
+        dashboardPage = PageFactory.get(InpatientDashboard.class);
     }
 
     @Step("Select <movement> from Patient Movement and click <Action> button")
@@ -121,7 +127,7 @@ public class InpatientSpec{
     @Step("Admit the patient through api")
     public void admitPatient(){
         DispositionPage disposition = PageFactory.get(DispositionPage.class);
-        BahmniRestClient.get().admitPatient(disposition.getPatientFromSpecStore(),"admit_patient.ftl");
+        BahmniRestClient.get().postBahmniEncounter(disposition.getPatientFromSpecStore(),"admit_patient.ftl");
         disposition.getPatientFromSpecStore().setAdmitted(true);
     }
 

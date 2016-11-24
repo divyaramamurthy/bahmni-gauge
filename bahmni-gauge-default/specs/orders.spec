@@ -11,9 +11,7 @@ Add Radiology Order
 Tags: regression, sanity
 
 * Create a new patient and open visit through API
-* On the login page
-* Login to the application
-* Click on clinical app
+* Login to app and navigate to "clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
 * Go to "Orders" tab

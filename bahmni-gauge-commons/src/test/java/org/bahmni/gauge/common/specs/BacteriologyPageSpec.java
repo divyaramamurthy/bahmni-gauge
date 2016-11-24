@@ -25,7 +25,10 @@ public class BacteriologyPageSpec{
     }
 
     @BeforeClassSteps
-    public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
+    public void waitForAppReady(){
+        bacteriologyPage.waitForSpinner();
+        bacteriologyPage= PageFactory.get(BacteriologyPage.class);
+    }
 
 
     @Step("Add following bacteriology samples <table>")

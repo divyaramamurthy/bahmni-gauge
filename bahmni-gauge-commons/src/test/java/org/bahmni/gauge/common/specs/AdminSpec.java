@@ -22,6 +22,7 @@ public class AdminSpec  {
     @BeforeClassSteps
     public void waitForAppReady(){
         adminPage.waitForSpinner();
+        adminPage = PageFactory.get(AdminPage.class);
     }
 
     @Step("Click on order set app")

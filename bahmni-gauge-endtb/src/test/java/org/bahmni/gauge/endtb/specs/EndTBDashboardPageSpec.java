@@ -2,7 +2,6 @@ package org.bahmni.gauge.endtb.specs;
 
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
-import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
@@ -23,7 +22,7 @@ public class EndTBDashboardPageSpec extends DashboardPageSpec {
 	public void validateContentInDisplayControl(String id, String title, String treatmentStartDate, Table table)
 			throws ParseException {
 		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-		dashboardPage.waitForSpinner();
+		dashboardPage.waitForElementOnPage("#"+id);
 
 		WebElement displayControl = dashboardPage.findElementById(id);
 		assertNotNull("The display control with id [" + id + "] not found", displayControl);

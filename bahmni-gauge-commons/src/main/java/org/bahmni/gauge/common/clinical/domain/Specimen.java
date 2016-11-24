@@ -16,6 +16,8 @@ public class Specimen {
     private String xpertTestDate;
     private String xpertTestId;
     private String xpertResult;
+    private String cultureResults;
+    private String MICInterpretation;
 
     public String getNote() {
         return note;
@@ -112,4 +114,22 @@ public class Specimen {
     public void setTypeOfSample(String typeOfSample) {
         this.typeOfSample = typeOfSample;
     }
+
+    public String getCultureResults() {
+        return cultureResults;
+    }
+
+    public void setCultureResults(String cultureResults) {
+        this.cultureResults = cultureResults;
+    }
+
+    public String getMICInterpretation() {
+        return MICInterpretation;
+    }
+
+    public void setMICInterpretation(String MICInterpretation) {
+        this.MICInterpretation = MICInterpretation;
+    }
+
+
 }

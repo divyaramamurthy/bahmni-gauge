@@ -23,11 +23,16 @@ public class DashboardPageSpec {
 
 	DashboardPage dashboardPage;
 
+	public DashboardPageSpec() {
+		dashboardPage=PageFactory.get(DashboardPage.class);
+
+	}
+
 	@BeforeClassSteps
 	public void waitForAppReady() {
 
-		dashboardPage=PageFactory.get(DashboardPage.class);
 		dashboardPage.waitForSpinner();
+		dashboardPage=PageFactory.get(DashboardPage.class);
 	}
 
 	@Step("Ensure that <id> Obs display control with title <title> has correct data <table>")

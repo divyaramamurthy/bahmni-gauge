@@ -29,53 +29,57 @@ public class TreatmentPageSpec {
 
     private TreatmentPage treatmentPage;
 
-    public TreatmentPageSpec(){
+    public TreatmentPageSpec() {
         treatmentPage = PageFactory.get(TreatmentPage.class);
     }
 
     @BeforeClassSteps
-    public void waitForAppReady(){ treatmentPage.waitForSpinner();}
-
+    public void waitForAppReady() {
+        treatmentPage.waitForSpinner();
+        treatmentPage = PageFactory.get(TreatmentPage.class);
+    }
 
 
     @Step("Create drug order <table>")
-    public void createDrugOrder(Table table){
+    public void createDrugOrder(Table table) {
         List<DrugOrder> drugOrders = transformTableToDrugOrder(table);
-        for (DrugOrder drugOrder: drugOrders){
+        for (DrugOrder drugOrder : drugOrders) {
             treatmentPage.createDrugOrder(drugOrder);
         }
     }
+
     @Step("Edit previous drug order <table>")
-    public void editDrugOrder(Table table){
-        int i =0;
+    public void editDrugOrder(Table table) {
+        int i = 0;
         List<DrugOrder> drugOrders = transformTableToDrugOrder(table);
-        for (DrugOrder drugOrder: drugOrders){
+        for (DrugOrder drugOrder : drugOrders) {
             treatmentPage.editDrugOrderbuttons.get(i++).click();
             treatmentPage.createDrugOrder(drugOrder);
         }
     }
+
     @Step("Add <orderset> drug order set")
-    public void createDrugOrder(String orderset){
-        treatmentPage.addOrderSet(orderset,0);
+    public void createDrugOrder(String orderset) {
+        treatmentPage.addOrderSet(orderset, 0);
     }
 
     @Step("Add <orderset> drug order set with previous date")
-    public void createDrugOrderPrevious(String orderset){
+    public void createDrugOrderPrevious(String orderset) {
         treatmentPage.addOrderSet(orderset, -1);
     }
 
-@Step("Stop the following drugs <table>")
-    public void stopDrug(Table table){
-    for (String drugName:table.getColumnValues("details"))
-        treatmentPage.stopDrugOrder(drugName);
+    @Step("Stop the following drugs <table>")
+    public void stopDrug(Table table) {
+        for (String drugName : table.getColumnValues("details"))
+            treatmentPage.stopDrugOrder(drugName);
     }
 
     @Step("Verify display control <displayTabName> on medications tab, has the following details <table>")
-    public void verifyDisplayControlContent(String displayTabName,Table table) {
+    public void verifyDisplayControlContent(String displayTabName, Table table) {
         String displayControlText = treatmentPage.getDisplayControlText(displayTabName);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = setDateTime(drugOrder);
-            Assert.assertTrue(stringDoesNotExist(drugOrder)+"Actual string : "+displayControlText,displayControlText.contains(drugOrder));
+            Assert.assertTrue(stringDoesNotExist(drugOrder) + "Actual string : " + displayControlText, displayControlText.contains(drugOrder));
         }
     }
 
@@ -85,7 +89,7 @@ public class TreatmentPageSpec {
         Patient patient = treatmentPage.getPatientFromSpecStore();
         PatientProgram patientProgram = treatmentPage.getPatientProgramFromSpecStore();
 
-        for (DrugOrder drugOrder : drugOrders){
+        for (DrugOrder drugOrder : drugOrders) {
             drugOrder.setDrugUuid(BahmniRestClient.get().getUuidOfDrug(drugOrder.getDrugName()));
             drugOrder.setPatientUuid(patient.getUuid());
             drugOrder.setProgramUuid(patientProgram.getPatientProgramUuid());
@@ -93,12 +97,13 @@ public class TreatmentPageSpec {
         BahmniRestClient.get().createDrugOrders(drugOrders);
         new BahmniPage().storeDrugOrderInSpecStore(drugOrders);
     }
+
     @Step("Refill previous drug order as following <table>")
-    public void refillDrugOrder(Table table){
-        int i =0;
+    public void refillDrugOrder(Table table) {
+        int i = 0;
         List<DrugOrder> drugOrders = transformTableToDrugOrder(table);
-        for (DrugOrder drugOrder: drugOrders){
-            treatmentPage.refillDrugOrder(drugOrder,i++);
+        for (DrugOrder drugOrder : drugOrders) {
+            treatmentPage.refillDrugOrder(drugOrder, i++);
 
         }
     }
@@ -113,7 +118,7 @@ public class TreatmentPageSpec {
 
         for (TableRow row : rows) {
             drugOrder = new DrugOrder();
-            for (String columnName:columnNames){
+            for (String columnName : columnNames) {
 
                 try {
                     BeanUtils.getProperty(drugOrder, columnName);

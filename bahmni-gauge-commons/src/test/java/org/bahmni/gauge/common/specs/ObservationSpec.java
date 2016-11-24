@@ -25,12 +25,15 @@ import java.util.Map;
 public class ObservationSpec{
     ObservationsPage observationsPage;
 
-    @BeforeClassSteps
-    public void waitForAppReady() {
+    public ObservationSpec() {
         observationsPage = PageFactory.get(ObservationsPage.class);
-        observationsPage.waitForSpinner();
     }
 
+    @BeforeClassSteps
+    public void waitForAppReady(){
+        observationsPage.waitForSpinner();
+        observationsPage = PageFactory.get(ObservationsPage.class);
+    }
 
     @Step("Select the template <template> from on the observation page")
     public void clickOnTreatmentEnrollment(String template) throws InterruptedException {
@@ -90,7 +93,7 @@ public class ObservationSpec{
     @Step("Verify display control <displayControlId> on dashboard, has the following details <table>")
     public void verifyDisplayControlContent(String displayControlId,Table table) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-        String displayControlText = dashboardPage.getDisplayControlText(displayControlId);
+        String displayControlText = dashboardPage.getDisplayControlText(displayControlId.replace(" ","-"));
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
             Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
