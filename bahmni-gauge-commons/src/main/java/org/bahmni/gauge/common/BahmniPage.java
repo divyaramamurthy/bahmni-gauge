@@ -85,14 +85,11 @@ public class BahmniPage {
 
     //@Deprecated
     public static void waitForSpinner(WebDriver driver) {
-        if (driver.findElement(By.cssSelector("#overlay")).isDisplayed()) {
+        try {
             waitForElement(driver, ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#overlay")));
-
-//            JavascriptExecutor js = ((JavascriptExecutor) getCurrentDriver());
-//            js.executeScript("scrollBy(0,2500)");
-//            Thread.sleep(1500);
-
-
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
