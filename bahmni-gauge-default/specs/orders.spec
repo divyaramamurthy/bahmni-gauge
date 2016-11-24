@@ -16,12 +16,12 @@ Tags: regression, sanity
 * Navigate to consultation
 * Go to "Orders" tab
 * Select following orders
-    |type|orderType|orderName|
+    |type|category|name|
     |Radiology|chest|chest, 1 view (x-ray)|
     |Radiology|chest|chest oblique - bilateral (x-ray)|
     |Radiology|chest|chest lateral|
 * Unselect following orders
-    |type|orderType|orderName|
+    |type|category|name|
     |Radiology|chest|chest lateral|
 * Enter notes to following "Radiology" orders
     |order|note|

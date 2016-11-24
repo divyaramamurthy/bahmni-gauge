@@ -40,12 +40,16 @@ public class OrdersPageSpec {
     public void unselectOrders(Table table){
         List<Order> orders=TableTransformer.asEntityList(table,Order.class);
         ordersPage.selectorders(orders);
-        for(Order order:ordersPage.getPatientFromSpecStore().getOrders()){
-            for(Order tableOrder:orders){
-                if(order.getName().equals(tableOrder.getName()))
+        for(Order tableOrder:orders){
+            for(Order order:ordersPage.getPatientFromSpecStore().getOrders()){
+                if(order.getName().equals(tableOrder.getName())) {
                     ordersPage.getPatientFromSpecStore().getOrders().remove(order);
+                    break;
+                }
             }
+
         }
+
     }
 
     @Step("Add the following orders through API <table>")

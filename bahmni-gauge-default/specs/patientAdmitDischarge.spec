@@ -121,7 +121,7 @@ Tags: regression, sanity
 * Verify details on visit page "Disposition" display control
 * Navigate to patient dashboard
 * Navigate to adt dashboard
-* Verify display control "disposition" on inpatient dashboard, has the following details
+* Verify display control with Caption "Disposition" on inpatient dashboard, has the following details
     |details|
     |Admit Patient|
     |<NOW[dd MMM yy]>|
@@ -132,7 +132,7 @@ Tags: regression, sanity
 * Select "Admit Patient" from Patient Movement and click "Admit" button with notes "Patient Admitted as requested"
 * Assign an empty bed
 * Navigate to Inpatient Dashboard
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+* Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
     |details|
     |General Ward <Patient.bedNumber>|
     |Admission Date<NOW[dd MMM yy]>|
@@ -210,7 +210,7 @@ Tags: regression, sanity
 * Verify details on visit page "Disposition" display control
 * Navigate to patient dashboard
 * Navigate to adt dashboard
-* Verify display control "disposition" on inpatient dashboard, has the following details
+* Verify display control with Caption "Disposition" on inpatient dashboard, has the following details
     |details|
     |Discharge Patient<NOW[dd MMM yy]>|
     |Discharge this patient|
@@ -225,7 +225,7 @@ Tags: regression, sanity
     |Total Beds: 9 |
     |Available Beds: 2|
 * Select existing patient from patient listing page under tab "All"
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+* Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
     |details|
     |Discharge Date<NOW[dd MMM yy]>|
     |Patient Discharged as requested|
@@ -256,7 +256,7 @@ Tags: regression, sanity
 * Verify details on visit page "Disposition" display control
 * Navigate to patient dashboard
 * Navigate to adt dashboard
-* Verify display control "disposition" on inpatient dashboard, has the following details
+* Verify display control with Caption "Disposition" on inpatient dashboard, has the following details
     |details|
     |Undo Discharge<NOW[dd MMM yy]>|
     |Undo Discharge this patient|
@@ -267,7 +267,7 @@ Tags: regression, sanity
     |Available Beds: 1|
 * Assign an empty bed
 * Navigate to Inpatient Dashboard
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+* Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
   |details|
   |General Ward <Patient.bedNumber>|
   |Admission Date<NOW[dd MMM yy]>|
@@ -334,7 +334,7 @@ Tags: regression, sanity
     |Total Beds: 9 |
     |Available Beds: 1|
 * Navigate to Inpatient Dashboard
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+* Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
     |details|
     |General Ward <Patient.bedNumber>|
     |Admission Date<NOW[dd MMM yy]>|
@@ -362,7 +362,7 @@ Tags: regression, sanity
     |Available Beds: 1|
 * Assign an empty bed
 * Navigate to Inpatient Dashboard
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+* Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
     |details|
     |General Ward <Patient.bedNumber>|
     |Admission Date<NOW[dd MMM yy]>|
@@ -408,7 +408,7 @@ Tags: regression, sanity
     |Total Beds: 9 |
     |Available Beds: 2|
 * Select existing patient from patient listing page under tab "All"
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+* Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
     |details|
     |Discharge Date<NOW[dd MMM yy]>|
     |Patient Discharged as requested|
@@ -438,7 +438,7 @@ Tags: regression, sanity
     |Total Beds: 9 |
     |Available Beds: 1|
 * Navigate to Inpatient Dashboard
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+* Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
   |details|
   |General Ward <Patient.bedNumber>|
   |Admission Date<NOW[dd MMM yy]>|
