@@ -24,3 +24,8 @@
 * Enter visit details through API
    |height|weight|registrationFee|
    |172|67|200|
+   
+# Create patient and open visit with details through API with details <table>
+
+* Create a new patient and open visit through API
+* Enter visit details through API <table>

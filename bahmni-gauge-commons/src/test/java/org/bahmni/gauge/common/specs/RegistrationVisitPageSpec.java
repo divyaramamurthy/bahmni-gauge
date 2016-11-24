@@ -61,6 +61,16 @@ public class RegistrationVisitPageSpec {
         }
     }
 
+    @Step("Verify display control with Caption <displayControlCaption> on visit page, with labels and details <table>")
+    public void verifyDisplayControlOnVisitPageWithCaptionAndLable(String displayControlCaption, Table table) {
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        String displayControlText = registrationVisitPage.getDisplayControlTextWithCaption(displayControlCaption);
+        for (String drugOrder : table.getColumnValues("details")) {
+            drugOrder = StringUtil.transformPatternToData(drugOrder);
+            Assert.assertTrue("String " + drugOrder + " does not exist. Actual String :" + displayControlText, displayControlText.contains(drugOrder));
+        }
+    }
+
     @Step("Verify details on visit page <Disposition> display control")
     public void selectDisplayControl(String name) {
         VisitPage visitPage = PageFactory.get(VisitPage.class);

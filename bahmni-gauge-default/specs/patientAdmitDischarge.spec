@@ -81,6 +81,7 @@ Tags: regression, sanity
     |details|
     |General Ward <Patient.bedNumber>|
     |Admission Date<NOW[dd MMM yy]>|
+* Close current browser tab
 * Navigate to dashboard
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"

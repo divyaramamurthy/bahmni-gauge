@@ -407,4 +407,16 @@ public class BahmniPage {
         robot.delay(1000);
     }
 
+    public void switchToLatestTab() {
+        String lwHandle="";
+        for(String windowHandle:driver.getWindowHandles()){
+            lwHandle=windowHandle;
+        }
+        driver.switchTo().window(lwHandle);
+    }
+
+    public void closeCurrentBrowserTab() {
+        driver.close();
+        switchToLatestTab();
+    }
 }

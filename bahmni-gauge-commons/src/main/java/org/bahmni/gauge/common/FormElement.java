@@ -13,11 +13,19 @@ import java.lang.reflect.Field;
 public enum FormElement {
     INPUT("input") {
         public void fillUp(WebElement observationNode, String value) {
-            observationNode.findElement(getSelector()).sendKeys(value);
+            WebElement element = observationNode.findElement(getSelector());
+            try {
+                element.clear();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            element.sendKeys(value);
         }
     },
     TEXT_AREA("textarea") {
         public void fillUp(WebElement observationNode, String value) {
+            WebElement element = observationNode.findElement(getSelector());
+            element.clear();
             observationNode.findElement(getSelector()).sendKeys(value);
         }
     },
@@ -45,7 +53,6 @@ public enum FormElement {
         }
     },
     UNKNOWN("") {
-        @Override
         public void fillUp(WebElement observationNode, String value) {
             System.out.println("Value :" + value + " not entered.");
         }

@@ -107,10 +107,7 @@ public class HomeSpec {
             default:
                 Gauge.writeMessage(app + " not implemented");
                 break;
-
-
         }
-        homePage.clickOrdersApp();
     }
 
 

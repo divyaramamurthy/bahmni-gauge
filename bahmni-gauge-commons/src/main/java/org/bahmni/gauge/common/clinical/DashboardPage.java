@@ -93,7 +93,7 @@ public class DashboardPage extends BahmniPage {
 				for(String key : expectedData.keySet()){
 					Assert.assertTrue(key+" Field not found in actual data",expectedData.containsKey(key));
 					if(actualData.containsKey(key))
-						Assert.assertEquals(key+" Field value didnt match",expectedData.get(key),actualData.get(key));
+						Assert.assertTrue(key+" Field value didnt match",actualData.get(key).contains(expectedData.get(key)));
 				}
 				break;
 
