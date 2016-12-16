@@ -124,3 +124,46 @@ Tags: regression, sanity
     |Follow up Date15 Oct 16|
     |Plan for follow upPlan for follow up|
 
+Ability to select and delete multiple values against a single field
+--------------------------------------------------------------------------------------
+
+ Tags: regression, sanity
+
+* Create a new patient and open visit through API
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "All"
+* Navigate to consultation
+* Select the template "Tuberculosis - Followup" from on the observation page
+* Fill Tuberculosis - Followup template with following observation details
+    |Adverse Effects|
+    |Numbness:Dizziness|
+* Save the consultation
+* Navigate to dashboard link
+* Verify display control "Tuberculosis Follow Up" on dashboard, has the following details
+      |details|
+      |Tuberculosis - Followup |
+      |Adverse Effects |
+      |Dizziness|
+      |Numbness|
+* Navigate to consultation
+* Go to "Consultation" tab
+* Verify display control with Caption "Tuberculosis - Followup" on "Consultation" tab, has the following details
+    |details|
+    |Adverse Effects Numbness|
+    |Adverse Effects Dizziness|
+* Go to "Observations" tab
+* Remove Adverse effect from Tuberculosis - Followup template
+ |Adverse Effects|
+ |Numbness|
+ * Save the consultation
+ * Navigate to dashboard link
+ * Verify display control "Tuberculosis Follow Up" on dashboard, has the following details
+       |details|
+       |Tuberculosis - Followup |
+       |Adverse Effects Dizziness|
+ * Navigate to consultation
+ * Go to "Consultation" tab
+ * Verify display control with Caption "Tuberculosis - Followup" on "Consultation" tab, has the following details
+     |details|
+     |Adverse Effects Dizziness|
+
