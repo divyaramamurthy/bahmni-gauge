@@ -182,7 +182,7 @@ public class ObservationSpec extends BaseSpec{
     @Step("Upload  consultation images with Notes on \"History and Examinations\" <table>")
     public void uploadConsultationImage(String template,Table table) throws IOException, AWTException, InterruptedException {
         ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
-        observationsPage.uploadConsultaionImageAndAddComment(template,table);
+        observationsPage.uploadConsultaionImageAndAddComment1(template,table);
     }
 
 }

@@ -1,5 +1,6 @@
 package org.bahmni.gauge.common;
 
+import com.sun.java.swing.plaf.windows.WindowsMenuBarUI;
 import com.thoughtworks.gauge.TableRow;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
@@ -24,6 +25,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.os.WindowsUtils;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -427,6 +430,40 @@ public class BahmniPage {
 
         robot.delay(1000);
     }
+
+
+
+    protected void uploadImage(WebElement frame,String s,int i) throws AWTException, IOException {
+
+        String sPath = new java.io.File(".").getCanonicalPath() + "/src/main/resources/upload/" + s;
+
+Runtime.getRuntime().
+
+
+       /*File file = new File(sPath);
+       StringSelection stringSelection = new StringSelection(file.getAbsolutePath());
+       Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);*/
+        frame.sendKeys(sPath);
+
+
+        Robot robot = new Robot();
+
+for(int ii=0;ii<=i;ii++) {
+
+    robot.keyPress(KeyEvent.VK_TAB);
+    robot.keyRelease(KeyEvent.VK_META);
+    robot.keyRelease(KeyEvent.VK_TAB);
+
+}
+       robot.delay(3000);
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+        robot.keyRelease(KeyEvent.VK_ESCAPE);
+
+
+    }
+
+
+
 
     public void switchToLatestTab() {
         String lwHandle = "";

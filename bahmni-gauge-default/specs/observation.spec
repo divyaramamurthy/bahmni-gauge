@@ -181,7 +181,8 @@ Tags: regression, sanity
 * Upload  consultation images with Notes on "History and Examination"
   |Image|Comment|
   |MRIScan.jpg|MRIScan|
-  |xray.jpeg|ultrasound|
+  |xray.jpeg|MRIScan|
+
 
 
 
