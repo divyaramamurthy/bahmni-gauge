@@ -30,4 +30,9 @@ public class RadiologyUploadPageSpec {
         radiologyUploadPage.save();
     }
 
+    @Step("Create new visit on radiology upload page <table>")
+    public void createVisitRadiology(Table table){
+        radiologyUploadPage.createNewVisit(table);
+    }
+
 }

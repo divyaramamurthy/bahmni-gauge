@@ -372,60 +372,16 @@ public class BahmniPage {
     protected void uploadFile(String s) throws AWTException, IOException {
         String sPath = new java.io.File(".").getCanonicalPath() + "/src/main/resources/upload/" + s;
         File file = new File(sPath);
-        StringSelection stringSelection = new StringSelection(file.getAbsolutePath());
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-
+        WebElement frame =driver.switchTo().activeElement();
+        frame.sendKeys(file.getAbsolutePath());
         Robot robot = new Robot();
-
-// Cmd + Tab is needed since it launches a Java app and the browser looses focus
-
         robot.keyPress(KeyEvent.VK_META);
-
         robot.keyPress(KeyEvent.VK_TAB);
-
         robot.keyRelease(KeyEvent.VK_META);
-
         robot.keyRelease(KeyEvent.VK_TAB);
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+        robot.keyRelease(KeyEvent.VK_ESCAPE);
 
-        robot.delay(500);
-
-//Open Goto window
-
-        robot.keyPress(KeyEvent.VK_META);
-
-        robot.keyPress(KeyEvent.VK_SHIFT);
-
-        robot.keyPress(KeyEvent.VK_G);
-
-        robot.keyRelease(KeyEvent.VK_META);
-
-        robot.keyRelease(KeyEvent.VK_SHIFT);
-
-        robot.keyRelease(KeyEvent.VK_G);
-
-//Paste the clipboard value
-
-        robot.keyPress(KeyEvent.VK_META);
-
-        robot.keyPress(KeyEvent.VK_V);
-
-        robot.keyRelease(KeyEvent.VK_META);
-
-        robot.keyRelease(KeyEvent.VK_V);
-
-//Press Enter key to close the Goto window and Upload window
-
-        robot.keyPress(KeyEvent.VK_ENTER);
-
-        robot.keyRelease(KeyEvent.VK_ENTER);
-
-        robot.delay(1000);
-
-        robot.keyPress(KeyEvent.VK_ENTER);
-
-        robot.keyRelease(KeyEvent.VK_ENTER);
-
-        robot.delay(1000);
     }
 
     public void switchToLatestTab() {
