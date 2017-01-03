@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ObservationSpec extends BaseSpec{
+public class ObservationSpec extends BaseSpec {
     private final WebDriver driver;
 
     public ObservationSpec() {
@@ -47,7 +47,7 @@ public class ObservationSpec extends BaseSpec{
     @Step("Enter values in <template> template <table>")
     public void enterTemplateValues(String template, Table table) throws InterruptedException {
         ObservationForm observationForm = null;
-        if(template.toLowerCase().contains("obstetrics"))
+        if (template.toLowerCase().contains("obstetrics"))
             observationForm = new ObservationForm(driver.findElement(By.cssSelector("#concept-set-3")));
         observationForm.fillUp(table);
         waitForAppReady();
@@ -94,49 +94,50 @@ public class ObservationSpec extends BaseSpec{
     }
 
     @Step("Verify display control <displayControlId> on dashboard, has the following details <table>")
-    public void verifyDisplayControlContent(String displayControlId,Table table) {
+    public void verifyDisplayControlContent(String displayControlId, Table table) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-        String displayControlText = dashboardPage.getDisplayControlText(displayControlId.replace(" ","-"));
+        String displayControlText = dashboardPage.getDisplayControlText(displayControlId.replace(" ", "-"));
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText), displayControlText.contains(drugOrder));
         }
     }
 
     @Step("Verify display control with Caption <controlCaption> on dashboard, has the following details <table>")
-    public void verifyDisplayControlContentWithCaption(String controlCaption,Table table) {
+    public void verifyDisplayControlContentWithCaption(String controlCaption, Table table) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
         String displayControlText = dashboardPage.getDisplayControlTextWithCaption(controlCaption);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText), displayControlText.contains(drugOrder));
         }
     }
 
     @Step("Expand all sections from display control with Caption <controlText>")
-    public void expandControl(String controlText){
-        DashboardPage dashboardPage=PageFactory.get(DashboardPage.class);
+    public void expandControl(String controlText) {
+        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
         dashboardPage.expandControlWithCaption(controlText);
     }
+
     @Step("click  <displayControlId> on dashboard, and verify displayed dialog has the following details <table>")
-    public void verifyDialogContent(String displayControlId,Table table) {
+    public void verifyDialogContent(String displayControlId, Table table) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
         dashboardPage.clickDisplayControlHeader(displayControlId);
         String displayControlText = dashboardPage.getDialogText(By.cssSelector(".ngdialog-content"));
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText), displayControlText.contains(drugOrder));
         }
         dashboardPage.closeDialog();
     }
 
     @Step("Verify the <template> concept set is <displayType>")
     public void verifyObservationFormContent(String template, String displayType) {
-            DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-            if(displayType.toLowerCase().equals("not displayed"))
-                Assert.assertFalse("Element "+template+" is displayed", dashboardPage.hasElement(By.cssSelector("#concept-set-4")));
-            else
-                Assert.assertTrue("Element "+template+" is not displayed", dashboardPage.hasElement(By.cssSelector("#concept-set-4")));
+        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        if (displayType.toLowerCase().equals("not displayed"))
+            Assert.assertFalse("Element " + template + " is displayed", dashboardPage.hasElement(By.cssSelector("#concept-set-4")));
+        else
+            Assert.assertTrue("Element " + template + " is not displayed", dashboardPage.hasElement(By.cssSelector("#concept-set-4")));
     }
 
 
@@ -146,43 +147,43 @@ public class ObservationSpec extends BaseSpec{
     }
 
     @Step("Fill <Vitals> template with following observation details <table>")
-    public void enterObservations(String template,Table table){
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
-        observationsPage.enterObservations(template,table);
+    public void enterObservations(String template, Table table) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.enterObservations(template, table);
 //        storeObservationFormInSpecStore(observationForm);
     }
 
     @Step("Navigate back to program dashboard")
-    public void navigateBackToDashboard(){
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+    public void navigateBackToDashboard() {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.navigateToDashboard();
         waitForAppReady();
     }
 
     @Step("Add more observation")
-    public void addmoreobservation(){
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+    public void addmoreobservation() {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.addMoreObservation();
         waitForAppReady();
     }
 
     @Step("Add chief complaint on \"History and Examination\" template <table>")
-    public void addMoreChiefComplaint(String template,Table table){
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
-        observationsPage.addChiefComplaints(template,table);
+    public void addMoreChiefComplaint(String template, Table table) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.addChiefComplaints(template, table);
 
     }
 
     @Step("Remove chief complaint on \"History and Examination\" template <table>")
-    public void removeChiefComplaint(String template,Table data){
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
-        observationsPage.removeChiefComplaints(template,data);
+    public void removeChiefComplaint(String template, Table data) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.removeChiefComplaints(template, data);
     }
 
-    @Step("Upload  consultation images with Notes on \"History and Examinations\" <table>")
-    public void uploadConsultationImage(String template,Table table) throws IOException, AWTException, InterruptedException {
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
-        observationsPage.uploadConsultaionImageAndAddComment1(template,table);
+    @Step("Upload consultation images with Notes on \"History and Examinations\" <table>")
+    public void uploadConsultationImage(String template, Table table) throws IOException, AWTException, InterruptedException {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.uploadConsultaionImageAndAddComment1(template, table);
     }
 
 }

@@ -1,4 +1,5 @@
 package org.bahmni.gauge.common.clinical;
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap;
 import com.sun.glass.events.KeyEvent;
 import com.sun.glass.ui.Pixels;
 import com.sun.glass.ui.Robot;
@@ -9,9 +10,11 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import sun.awt.SunHints;
 
 import java.awt.*;
 import java.io.IOException;
@@ -186,7 +189,7 @@ public class ObservationsPage extends BahmniPage {
             waitForSpinner();
             driver.findElement(By.xpath("(//legend/strong[contains(text(),'Images')]/../../..//button[@toggle='observation.showComment'])["+rowCount+"]")).click();
             driver.findElement(By.xpath("(//textarea[contains(@class,'consultation-img-comments')])["+rowCount+"]")).sendKeys(row.getCell("Comment"));
-            driver.findElement(By.xpath(("(.//*[contains(@id,'image_addmore_observation_')])[" + rowCount + "]"))).click();
+            driver.findElement(By.xpath(("(.//*[contains(@id,'image_addmore_observation_')])"))).click();
             rowCount++;
         }
         save.click();
@@ -196,26 +199,18 @@ public class ObservationsPage extends BahmniPage {
     public void uploadConsultaionImageAndAddComment1(String template,Table table) throws AWTException, IOException, InterruptedException {
         ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
         List<TableRow> rows = table.getTableRows();
-        int rowSize = rows.size();
         int rowCount = 1;
-        List<String> columnNames = table.getColumnNames();
         for (TableRow row : rows) {
-            String s = row.getCell("Image");
-            String sPath = new java.io.File(".").getCanonicalPath() + "/src/main/resources/upload/" + s;
-
-            waitForSpinner();
+            String imageName = row.getCell("Image");
             Thread.sleep(3000);
-            driver.findElement(By.xpath("(//label[contains(@for,'file-browse-observation')])[" + rowCount + "]")).click();
-            WebElement frame = driver.switchTo().activeElement();
-            uploadImage(frame,row.getCell("Image"));
-
-
-
-
+            scrollToBottom();
+            driver.findElement(By.xpath("(//label[contains(@class,'placeholder btn')])["+rowCount+"]")).click();
+            Thread.sleep(3000);
+            uploadImage(imageName);
             waitForSpinner();
             driver.findElement(By.xpath("(//legend/strong[contains(text(),'Images')]/../../..//button[@toggle='observation.showComment'])["+rowCount+"]")).click();
             driver.findElement(By.xpath("(//textarea[contains(@class,'consultation-img-comments')])["+rowCount+"]")).sendKeys(row.getCell("Comment"));
-            driver.findElement(By.xpath(("(.//*[contains(@id,'image_addmore_observation_')])[" + rowCount + "]"))).click();
+            driver.findElement(By.xpath(("(.//*[contains(@id,'image_addmore_observation_')])"))).click();
             rowCount++;
         }
         save.click();

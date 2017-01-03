@@ -433,37 +433,31 @@ public class BahmniPage {
     }
 
 
+    protected void uploadImage(String imageName) throws AWTException, IOException {
 
-    protected void uploadImage(WebElement frame,String s) throws AWTException, IOException {
+        String sPath = new java.io.File(".").getCanonicalPath() + "/src/main/resources/upload/" + imageName;
+        WebElement frame = driver.switchTo().activeElement();
 
-        String sPath = new java.io.File(".").getCanonicalPath() + "/src/main/resources/upload/" + s;
-
-
-
-
-       /*File file = new File(sPath);
-       StringSelection stringSelection = new StringSelection(file.getAbsolutePath());
-       Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);*/
         frame.sendKeys(sPath);
 
         Robot robot = new Robot();
 
 
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+        robot.keyRelease(KeyEvent.VK_ESCAPE);
 
+        robot.keyPress(KeyEvent.VK_META);
+        robot.keyPress(KeyEvent.VK_TAB);
+        robot.keyRelease(KeyEvent.VK_META);
+        robot.keyRelease(KeyEvent.VK_TAB);
 
-    robot.keyPress(KeyEvent.VK_TAB);
-    robot.keyRelease(KeyEvent.VK_META);
-    robot.keyRelease(KeyEvent.VK_TAB);
+        robot.delay(3000);
 
-
-       robot.delay(3000);
         robot.keyPress(KeyEvent.VK_ESCAPE);
         robot.keyRelease(KeyEvent.VK_ESCAPE);
 
 
     }
-
-
 
 
     public void switchToLatestTab() {
