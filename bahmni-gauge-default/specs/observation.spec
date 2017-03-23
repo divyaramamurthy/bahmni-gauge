@@ -231,3 +231,18 @@ Tags: regression, sanity
   |Image|
   |MRIScan|
   |XRayCopy|
+
+Able to control Text Box enable/disable by Boolean Obs
+---------------------------------------------------------
+Tags: form event handler
+
+* Create patient and open visit with details through API with details
+   |height|weight|registrationFee|
+   |172|67|200|
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Add the "3129" existing form
+* Verify "3129" is added to the left pane
+* Click on "Yes" button
+* Verify "textarea" in "Chief Complaint Notes" is disabled

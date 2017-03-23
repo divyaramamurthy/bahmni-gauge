@@ -328,6 +328,17 @@ public class ObservationSpec extends BaseSpec {
         Assert.assertEquals("Error popup message dont match", message, observationsPage.findElement(By.cssSelector(".msg")).getText());
     }
 
+    @Step("Verify <elementName> in <controlName> is disabled")
+    public void verifyControlIsDisabled(String elementName, String controlName) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        WebElement controlLabel = observationsPage.findLabelByText(controlName);
+        WebElement controlSuper = controlLabel.findElement(By.xpath("../.."));
+        String cssStyle = "div.obs-comment-section-wrap >" + elementName;
+        WebElement controlTextArea = controlSuper.findElement(By.cssSelector(cssStyle));
+        String result = controlTextArea.getAttribute("disabled");
+        Assert.assertTrue(result != null);
+    }
+
     @Step("Verify <controlName> is <property>")
     public void verifyControlHasProperty(String controlName, String property){
         String cssStyle = parsePropertyToCss(property);
