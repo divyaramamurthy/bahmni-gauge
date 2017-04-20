@@ -19,25 +19,6 @@ Tags: regression, sanity
     |11-04-2016|Blood|67890|Sample collected Note 2|Negative|9876|No|11-05-2016|12:12PM|11-06-2016|76543|ACD - Active Case Detection|
 * Save the consultation
 * Navigate to patient dashboard
-* Expand all sections from display control with Caption "Bacteriology Results"
-* Verify display control "Bacteriology-Results" on dashboard, has the following details
-    |details|
-    |Blood : 12345|
-    |Smear resultNegative|
-    |Smear test lab ID number4321|
-    |Diagnosed with other SymptomYes|
-    |Date of AFB smear02 Nov 16|
-    |Date of Xpert test done03 Nov 16|
-    |Xpert test ID number34567|
-    |Xpert MTB resultACD - Active Case Detection|
-    |Blood : 67890|
-    |Smear resultNegative|
-    |Smear test lab ID number9876|
-    |Diagnosed with other SymptomNo|
-    |Date of AFB smear05 Nov 16|
-    |Date of Xpert test done06 Nov 16|
-    |Xpert test ID number76543|
-    |Xpert MTB resultACD - Active Case Detection|
 * Open the current visit
 * Verify display control with Caption "Observations" on visit page, has the following details
     |details|
@@ -56,6 +37,26 @@ Tags: regression, sanity
     |Sample SourceBlood|
     |Id67890|
     |consultation noteSample collected Note 2|
+    |Smear resultNegative|
+    |Smear test lab ID number9876|
+    |Diagnosed with other SymptomNo|
+    |Date of AFB smear05 Nov 16|
+    |Date of Xpert test done06 Nov 16|
+    |Xpert test ID number76543|
+    |Xpert MTB resultACD - Active Case Detection|
+* Navigate to patient dashboard
+* Expand all sections from display control with Caption "Bacteriology Results"
+* Verify display control "Bacteriology-Results" on dashboard, has the following details
+    |details|
+    |Blood : 12345|
+    |Smear resultNegative|
+    |Smear test lab ID number4321|
+    |Diagnosed with other SymptomYes|
+    |Date of AFB smear02 Nov 16|
+    |Date of Xpert test done03 Nov 16|
+    |Xpert test ID number34567|
+    |Xpert MTB resultACD - Active Case Detection|
+    |Blood : 67890|
     |Smear resultNegative|
     |Smear test lab ID number9876|
     |Diagnosed with other SymptomNo|
@@ -88,25 +89,6 @@ Tags: regression, sanity
     |11-07-2016|Urine|23456|Sample collected Note 3|Negative|5432|Yes|11-08-2016|11:11PM|11-08-2016|45678|ACD - Active Case Detection|
 * Save the consultation
 * Navigate to patient dashboard
-* Expand all sections from display control with Caption "Bacteriology Results"
-* Verify display control "Bacteriology-Results" on dashboard, has the following details
-    |details|
-    |Blood : 12345|
-    |Smear resultNegative|
-    |Smear test lab ID number4321|
-    |Diagnosed with other SymptomYes|
-    |Date of AFB smear02 Nov 16|
-    |Date of Xpert test done03 Nov 16|
-    |Xpert test ID number34567|
-    |Xpert MTB resultACD - Active Case Detection|
-    |Urine : 23456|
-    |Smear resultNegative|
-    |Smear test lab ID number5432|
-    |Diagnosed with other SymptomYes|
-    |Date of AFB smear08 Nov 16|
-    |Date of Xpert test done08 Nov 16|
-    |Xpert test ID number45678|
-    |Xpert MTB resultACD - Active Case Detection|
 * Open the current visit
 * Verify display control with Caption "Observations" on visit page, has the following details
     |details|
@@ -125,6 +107,26 @@ Tags: regression, sanity
     |Sample SourceUrine|
     |Id23456|
     |consultation noteSample collected Note 3|
+    |Smear resultNegative|
+    |Smear test lab ID number5432|
+    |Diagnosed with other SymptomYes|
+    |Date of AFB smear08 Nov 16|
+    |Date of Xpert test done08 Nov 16|
+    |Xpert test ID number45678|
+    |Xpert MTB resultACD - Active Case Detection|
+* Navigate to patient dashboard
+* Expand all sections from display control with Caption "Bacteriology Results"
+* Verify display control "Bacteriology-Results" on dashboard, has the following details
+    |details|
+    |Blood : 12345|
+    |Smear resultNegative|
+    |Smear test lab ID number4321|
+    |Diagnosed with other SymptomYes|
+    |Date of AFB smear02 Nov 16|
+    |Date of Xpert test done03 Nov 16|
+    |Xpert test ID number34567|
+    |Xpert MTB resultACD - Active Case Detection|
+    |Urine : 23456|
     |Smear resultNegative|
     |Smear test lab ID number5432|
     |Diagnosed with other SymptomYes|
