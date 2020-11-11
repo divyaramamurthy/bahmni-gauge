@@ -163,12 +163,26 @@ public class DashboardPageSpec {
         dashboardPage.verifyPatientDetails(dashboardPage.getPatientFromSpecStore());
     }
 
-    //Date specification format "MM DD YY"
+    // Date specification format "MM DD YY"
     // Ex: "01 Mar 15"
     @Step("open the visit for date <date>")
-    public void openVisitForDate(String date)
-    {
+    public void openVisitForDate(String date) {
         dashboardPage.openRetrospectiveVisit(date);
+    }
+
+    @Step("Add chief complaint on <History and Examination> template <table>")
+    public void addChiefComplaintOnTemplate(Object arg0, Object arg1) {
+        throw new UnsupportedOperationException("Provide custom implementation");
+    }
+
+    @Step("Remove chief complaint on <History and Examination> template <table>")
+    public void removeChiefComplaintOnTemplate(Object arg0, Object arg1) {
+        throw new UnsupportedOperationException("Provide custom implementation");
+    }
+
+    @Step("Upload consultation images with Notes on <History and Examination> <table>")
+    public void uploadConsultationImagesWithNotesOn(Object arg0, Object arg1) {
+        throw new UnsupportedOperationException("Provide custom implementation");
     }
 
 }

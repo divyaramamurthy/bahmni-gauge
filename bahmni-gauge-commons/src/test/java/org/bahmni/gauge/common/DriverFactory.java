@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import com.thoughtworks.gauge.AfterScenario;
 import com.thoughtworks.gauge.AfterSpec;
 import com.thoughtworks.gauge.BeforeSpec;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
 import org.bahmni.gauge.common.formBuilder.domain.Form;
@@ -27,36 +26,41 @@ public class DriverFactory {
 
     private static WebDriver driver;
 
-    //TODO: Remove this static method!!!!!
+    // TODO: Remove this static method!!!!!
     public static WebDriver getDriver() {
-        
+
         return driver;
 
     }
 
     @BeforeSpec
     public void setup() {
-        if("true".equals(System.getenv("RUNS_IN_DOCKER"))){
+        if ("true".equals(System.getenv("RUNS_IN_DOCKER"))) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--no-sandbox");
 
-            ChromeDriverService service = new ChromeDriverService.Builder()
-                    .usingAnyFreePort()
-                    .withEnvironment(ImmutableMap.of("DISPLAY",":99"))
-                    .usingDriverExecutable(new File("/usr/local/bin/chromedriver"))
-                    .build();
+            ChromeDriverService service = new ChromeDriverService.Builder().usingAnyFreePort()
+                    .withEnvironment(ImmutableMap.of("DISPLAY", ":99"))
+                    .usingDriverExecutable(new File("/usr/local/bin/chromedriver")).build();
 
-            try{
+            try {
                 service.start();
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            driver = new ChromeDriver(service,options);
+            driver = new ChromeDriver(service, options);
         } else {
-            ChromeDriverManager.getInstance().setup();
+            System.out.print("Driver about to start");
+            // ChromeDriverManager.getInstance().setup();
+            WebDriverManager.chromedriver().setup();
+
             DesiredCapabilities capability = DesiredCapabilities.chrome();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--ignore-certificate-errors");
             capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-            driver = new ChromeDriver(capability);
+            driver = new ChromeDriver(options);
+            System.out.print("Driver started successfully");
+           
         }
 
         driver.manage().window().setSize(new Dimension(1440, 1200));

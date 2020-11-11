@@ -55,7 +55,7 @@ public class HomePage extends BahmniPage {
 	public WebElement formBuilder;
 
 	public void clickRegistrationApp(){
-    	registration.click();
+    	waitForElementOnPage(registration).click();
     }
 
     public void clickClinicalApp() {

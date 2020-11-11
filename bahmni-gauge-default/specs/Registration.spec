@@ -65,7 +65,7 @@ Verify BMI display control verification
 ---------------------------------------
 Tags: regression, sanity
 * Create a new patient through API
-* On the login page 
+* On the login page
 * Login to the application
 * Click on registration app
 * Search previously created patient with exact identifier
@@ -93,21 +93,21 @@ Closing visit for an admitted patient displays error message
 -------------------------------------------------------------
 Tags: regression, sanity
 
-* Create and admit a patient through API 
-* On the login page 
+* Create and admit a patient through API
+* On the login page
 * Login to the application
 * Click on registration app
- * Search previously created patient with exact identifier 
-* Enter Visit Details for Admitted Patient
- * Try close visit
- * Verify Error popup with message "Admitted patient's visit cannot be closed. Discharge the patient and try again" is displayed
- * Discharge the patient through api 
-* Close visit  
 * Search previously created patient with exact identifier
-   * Verify "Start OPD visit" button is "displayed" 
-* Navigate to dashboard 
-* Click on inpatient app 
-* Select existing patient from patient listing page under tab "All" 
-* Verify only "Admit Patient" option is displayed in Patient Movement  
-* Navigate to dashboard  
+* Enter Visit Details for Admitted Patient
+* Try close visit
+* Verify Error popup with message "Admitted patient's visit cannot be closed. Discharge the patient and try again" is displayed
+* Discharge the patient through api
+* Close visit
+* Search previously created patient with exact identifier
+* Verify "Start OPD visit" button is "displayed"
+* Navigate to dashboard
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "All"
+* Verify only "Admit Patient" option is displayed in Patient Movement
+* Navigate to dashboard
 * Logout the user

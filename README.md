@@ -38,3 +38,8 @@ FAQ
     * To make it running again, please run the below commands
       * `Xvfb -ac :99 -screen 0 1280x1024x16 &`
       * `export DISPLAY=:99`
+
+* Running Single Spec locally
+    * `cd bahmni-gauge-default`
+    * `mvn gauge:execute -DspecsDir=specs/Registration.spec`
+    * For any changes in the `bahmni-gauge-commons` module create the jar again with `mvn clean install`

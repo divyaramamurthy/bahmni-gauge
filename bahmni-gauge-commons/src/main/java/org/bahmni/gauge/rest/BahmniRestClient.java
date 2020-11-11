@@ -92,7 +92,7 @@ public class BahmniRestClient {
                         }
                     })
                     .build();
-            SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext);
+            SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
             CloseableHttpClient httpclient = HttpClients.custom()
                     .setSSLSocketFactory(sslsf)
                     .build();
