@@ -11,7 +11,7 @@
         <module>bahmni-gauge-commons</module>
         <module>bahmni-gauge-endtb</module>
         <module>bahmni-gauge-amman</module>
-        <module>bahmni-gauge-default</module>
+<!--        <module>bahmni-gauge-default</module>-->
         <module>bahmni-gauge-possible</module>
     </modules>
 
@@ -71,7 +71,7 @@
             <plugin>
                 <groupId>com.thoughtworks.gauge.maven</groupId>
                 <artifactId>gauge-maven-plugin</artifactId>
-                <version>1.3.0</version>
+                <version>1.4.3</version>
             </plugin>
         </plugins>
     </build>
