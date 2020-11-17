@@ -57,6 +57,7 @@ public class DriverFactory {
             DesiredCapabilities capability = DesiredCapabilities.chrome();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--no-sandbox"); // Bypass OS security model
+            options.addArguments("--headless");
             options.addArguments("--ignore-certificate-errors");
             options.addArguments("start-maximized"); // open Browser in maximized mode
             options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
