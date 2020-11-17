@@ -28,6 +28,6 @@ jobs:
       - name: Build with Maven
         run: mvn clean install && cd bahmni-gauge-default
       - name: Cd to directory
-        run: cd bahmni-gauge-default
+        run: cd bahmni-gauge-default && mvn gauge:execute -DspecsDir=specs/Registration.spec
       - name: Run tests
         run: mvn gauge:execute -DspecsDir=specs/Registration.spec
