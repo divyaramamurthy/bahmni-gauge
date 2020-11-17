@@ -68,7 +68,7 @@ public class DriverFactory {
            
         }
 
-        driver.manage().window().setSize(new Dimension(1440, 1200));
+//        driver.manage().window().setSize(new Dimension(1440, 1200));
 
     }
 
