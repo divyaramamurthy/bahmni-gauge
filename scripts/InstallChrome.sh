@@ -12,4 +12,4 @@ sudo apt-get -y install imagemagick x11-apps
 # Make sure that Xvfb starts everytime the box/vm is booted:
 echo "Starting X virtual framebuffer (Xvfb) in background..."
 Xvfb -ac :99 -screen 0 1280x1024x16 &
-export DISPLAY=:99
+export DISPLAY=:0.0
