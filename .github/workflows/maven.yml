@@ -25,5 +25,7 @@ jobs:
         run: chmod +x ./scripts/InstallChrome.sh && ./scripts/InstallChrome.sh
       - name: Build with Maven
         run: mvn clean install && cd bahmni-gauge-default
+      - name: Install Gauge
+        run: chmod +x ./scripts/Installgauge.sh && ./scripts/Installgauge.sh
       - name: Run tests
         run: mvn gauge:execute -DspecsDir=specs/Registration.spec
