@@ -27,6 +27,7 @@ jobs:
         run: chmod +x ./scripts/InstallGauge.sh && ./scripts/InstallGauge.sh
       - name: Build with Maven
         run: mvn clean install && cd bahmni-gauge-default
-
+      - name: Cd to directory
+        run: cd bahmni-gauge-default
       - name: Run tests
         run: mvn gauge:execute -DspecsDir=specs/Registration.spec
