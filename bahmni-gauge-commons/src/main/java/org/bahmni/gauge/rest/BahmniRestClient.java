@@ -104,6 +104,7 @@ public class BahmniRestClient {
     }
 
     public static BahmniRestClient get() {
+        // System.out.println("Craeting1 Bahmni rest client");
         if (bahmniRestClient == null) {
             bahmniRestClient = new BahmniRestClient();
             bahmniRestClient.url = System.getenv("BAHMNI_GAUGE_APP_URL");

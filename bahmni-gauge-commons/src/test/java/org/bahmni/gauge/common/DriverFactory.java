@@ -61,7 +61,7 @@ public class DriverFactory {
             options.addArguments("--ignore-certificate-errors");
             options.addArguments("start-maximized"); // open Browser in maximized mode
             options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-            WebDriver driver = new ChromeDriver(options);
+            driver = new ChromeDriver(options);
             capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
             driver = new ChromeDriver(options);
             System.out.print("Driver started successfully");
