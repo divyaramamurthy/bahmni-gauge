@@ -4,14 +4,14 @@ import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.DispositionPage;
 
 public class DispositionPageSpec extends BahmniPage {
     private DispositionPage dispositionPage;
 
     public DispositionPageSpec() {
-        dispositionPage = PageFactory.get(DispositionPage.class);
+        dispositionPage = PageFactorySpec.get(DispositionPage.class);
     }
 
     @BeforeClassSteps

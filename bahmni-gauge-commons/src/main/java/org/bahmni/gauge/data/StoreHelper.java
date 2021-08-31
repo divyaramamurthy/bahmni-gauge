@@ -12,16 +12,20 @@ import java.util.List;
 
 public class StoreHelper {
     public static <T> boolean store(Class<T> tClass, T entity) {
+       //
         List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(tClass.getSimpleName());
+        //List<T> entities = (List<T>) ScenarioDataStore.get(tClass.getSimpleName());
         if (null == entities) {
             entities = new LinkedList<>();
+          //  ScenarioDataStore.put(tClass.getSimpleName(), entities);
             DataStoreFactory.getScenarioDataStore().put(tClass.getSimpleName(), entities);
         }
         return entities.add(entity);
     }
 
     public static <T> T getLatest(Class<T> tClass) {
-        List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(tClass.getSimpleName());
+      List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(tClass.getSimpleName());
+     //   List<T> entities = (List<T>) ScenarioDataStore.get(tClass.getSimpleName());
         if (CollectionUtils.isEmpty(entities)) {
             return null;
         }
@@ -30,7 +34,8 @@ public class StoreHelper {
     }
 
     public static <T> String getVariableInClass(String className, String var) {
-        List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(className);
+       List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(className);
+        //List<T> entities = (List<T>) ScenarioDataStore.get(className);
         if (CollectionUtils.isEmpty(entities)) {
             return null;
         }
@@ -48,6 +53,7 @@ public class StoreHelper {
 
     public static <T> T getLatest(String tClassName) {
         List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(tClassName);
+     //   List<T> entities = (List<T>) ScenarioDataStore.get(tClassName);
         if (CollectionUtils.isEmpty(entities)) {
             return null;
         }
@@ -56,6 +62,7 @@ public class StoreHelper {
 
     public static <T> List<T> getAll(Class<T> tClass) {
         List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(tClass.getSimpleName());
+       // List<T> entities = (List<T>) ScenarioDataStore.get(tClass.getSimpleName());
         if (null == entities) {
             return Collections.EMPTY_LIST;
         }

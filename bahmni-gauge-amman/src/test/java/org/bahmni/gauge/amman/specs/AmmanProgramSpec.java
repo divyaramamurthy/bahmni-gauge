@@ -8,7 +8,7 @@ import org.bahmni.gauge.amman.clinical.AmmanProgramPage;
 import org.bahmni.gauge.amman.registration.domain.AmmanPatient;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.rest.BahmniRestClient;
@@ -22,7 +22,7 @@ public class AmmanProgramSpec {
 
     @Step("Enroll patient to the following program <programDetails>")
     public void enrollPatientToProgram(Table programDetails) {
-        AmmanProgramPage ammanProgramPage = PageFactory.get(AmmanProgramPage.class);
+        AmmanProgramPage ammanProgramPage = PageFactorySpec.get(AmmanProgramPage.class);
         Program treatment = TableTransformer.asEntity(programDetails, Program.class);
         ammanProgramPage.enrollToProgram(treatment);
         waitForAppReady();
@@ -32,13 +32,13 @@ public class AmmanProgramSpec {
     @Step("Edit <Reconstructive Surgery> Program with following details <table>")
     public void editProgram(String programName, Table updatedProgramTable) {
         Program updatedProgram=TableTransformer.asEntity(updatedProgramTable, Program.class);
-        AmmanProgramPage ammanProgramPage = PageFactory.get(AmmanProgramPage.class);
+        AmmanProgramPage ammanProgramPage = PageFactorySpec.get(AmmanProgramPage.class);
         ammanProgramPage.editProgram(programName,updatedProgram);
     }
 
     @Step("Navigate to queues")
     public void navigateToQueues(){
-        AmmanProgramPage ammanProgramPage = PageFactory.get(AmmanProgramPage.class);
+        AmmanProgramPage ammanProgramPage = PageFactorySpec.get(AmmanProgramPage.class);
         ammanProgramPage.clickBackButton();
     }
 

@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class RegistrationFirstPage extends BahmniPage {
 
-	public static final String URL = BASE_URL.concat("/registration/#/patient/new");
+	public static final String URL = BASE_URL.concat("/bahmni/registration/#/patient/new");
 
 	@FindBy(how = How.CSS, using = "#givenName")
 	public WebElement txtPatientName;
@@ -89,7 +89,7 @@ public class RegistrationFirstPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = ".btn-user-info")
 	public WebElement user_info;
 
-	@FindBy(how= How.CSS, using = "i.fa-power-off")
+	@FindBy(how= How.CSS, using = ".fa-power-off")
 	public WebElement logout;
 
 	@FindBy(how= How.CSS, using = ".ngdialog-content #modal-refill-button")

@@ -6,7 +6,7 @@ import com.thoughtworks.gauge.Table;
 import java.text.SimpleDateFormat;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.ConsultationPage;
 
 import java.util.Date;
@@ -16,7 +16,7 @@ public class ConsultationPageSpec {
     private ConsultationPage consultationPage;
 
     public ConsultationPageSpec() {
-        consultationPage = PageFactory.getConsultationPage();
+        consultationPage = PageFactorySpec.getConsultationPage();
 
     }
 

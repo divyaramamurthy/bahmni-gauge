@@ -4,7 +4,7 @@ import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.orders.OrdersSearchPage;
 
 public class OrdersSearchSpec extends BahmniPage{
@@ -16,7 +16,7 @@ public class OrdersSearchSpec extends BahmniPage{
 
 	@Step("Search previously created patient with exact identifier on orders search page")
 	public void searchPreviousCreatedPatientWithIdentifier() {
-		OrdersSearchPage ordersSearchPage=PageFactory.get(OrdersSearchPage.class);
+		OrdersSearchPage ordersSearchPage= PageFactorySpec.get(OrdersSearchPage.class);
 		ordersSearchPage.searchById(getPatientFromSpecStore());
 	}
 }

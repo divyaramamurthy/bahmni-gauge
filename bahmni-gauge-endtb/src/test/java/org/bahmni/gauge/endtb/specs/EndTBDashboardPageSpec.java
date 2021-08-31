@@ -5,7 +5,6 @@ import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
-import org.bahmni.gauge.common.specs.DashboardPageSpec;
 import org.openqa.selenium.WebElement;
 
 import java.text.ParseException;
@@ -16,7 +15,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class EndTBDashboardPageSpec extends DashboardPageSpec {
+public class EndTBDashboardPageSpec extends DashboardPage {
 
 	@Step("Ensure <Treatment-Information> display control with title <Treatment Information> with <01 Jul 16> as Start Date <table>")
 	public void validateContentInDisplayControl(String id, String title, String treatmentStartDate, Table table)
@@ -37,8 +36,11 @@ public class EndTBDashboardPageSpec extends DashboardPageSpec {
 		table.addRow(Arrays.asList(currentMonthOfTreatment, treatmentStartDate));
 
 		for (String columnName : columnNames) {
-			assertEquals("The column [" + columnName + "] has incorrect data for the patient [" + dashboardPage
+			/*assertEquals("The column [" + columnName + "] has incorrect data for the patient [" + dashboardPage
 							.getPatientFromSpecStore().getIdNumber() + "]", table.getTableRows().get(0).getCell(columnName),
+					keyValues.get(columnName));*/
+			assertEquals("The column [" + columnName + "] has incorrect data for the patient [" + dashboardPage.getPatientFromSpecStore()
+							.getIdNumber() + "]", table.getTableRows().get(0).getCell(columnName),
 					keyValues.get(columnName));
 		}
 	}

@@ -6,7 +6,7 @@ import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
@@ -40,7 +40,7 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Select the template <template> from on the observation page")
     public void clickOnTreatmentEnrollment(String template) throws InterruptedException {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.selectTemplate(template);
         waitForAppReady();
     }
@@ -60,7 +60,7 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Create a <formName> form using <formModelName> with <conceptName>")
     public void createForm(String formName, String formModelName, String conceptName) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.createAndPublishFormByAPI(formName, formModelName, conceptName);
     }
 
@@ -78,33 +78,33 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Click on expand all")
     public void expandAll() {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.clickOnExpand();
     }
 
     @Step("Click on collapse all")
     public void collapseAll() {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.clickOnCollapse();
     }
 
     @Step("Verify observations recorded under <formName>")
     public void verifyObservationsOnDashboard(String formName) {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        DashboardPage dashboardPage = PageFactorySpec.get(DashboardPage.class);
         dashboardPage.validateObservationDisplayControl(formName);
     }
 
     @Step("Verify prescribed drugs on the dashboard page")
     public void verifyDrugsOnDashboard() {
         List<DrugOrder> drugOrder = (List<DrugOrder>) new BahmniPage().getDrugOrderFromSpecStore();
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        DashboardPage dashboardPage = PageFactorySpec.get(DashboardPage.class);
         for (DrugOrder drug : drugOrder)
             dashboardPage.validateDrugOrderDisplayControl(drug, "All active TB Drugs");
     }
 
     @Step("Verify display control <displayControlId> on dashboard, has the following details <table>")
     public void verifyDisplayControlContent(String displayControlId, Table table) {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        DashboardPage dashboardPage = PageFactorySpec.get(DashboardPage.class);
         waitForAppReady();
         String displayControlText = dashboardPage.getDisplayControlText(displayControlId.replace(" ", "-"));
         for (String drugOrder : table.getColumnValues("details")) {
@@ -115,7 +115,7 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Verify display control with Caption <controlCaption> on dashboard, has the following details <table>")
     public void verifyDisplayControlContentWithCaption(String controlCaption, Table table) {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        DashboardPage dashboardPage = PageFactorySpec.get(DashboardPage.class);
         String displayControlText = dashboardPage.getDisplayControlTextWithCaption(controlCaption);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
@@ -125,50 +125,50 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Expand all sections from display control with Caption <controlText>")
     public void expandControl(String controlText) {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        DashboardPage dashboardPage = PageFactorySpec.get(DashboardPage.class);
         dashboardPage.expandControlWithCaption(controlText);
     }
 
     @Step("Click on add new obs form")
     public void showAllObsForm() {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.clickOnAddNewObsForm();
     }
 
     @Step("Click on <strongText> stronged text")
     public void clickOnLabel(String strongText) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.clickOnLabel(observationsPage.findStrongByText(strongText));
     }
 
     @Step("Search <formName> obs form")
     public void showSearchedObsForm(String formName) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.searchObsForm(formName);
     }
 
     @Step("Verify <formName> is disabled to add")
     public void verifyFormDisabled(String formName) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         Boolean isDisabled = observationsPage.getDisabledValue(formName);
         Assert.assertTrue(isDisabled);
     }
 
     @Step("Choose <selectedObsForm> obs form")
     public void showChoosedObsForm(String selectedObsForm) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.clickOnSelectedObsForm(selectedObsForm);
     }
 
     @Step("Expand <formName> obs form")
     public void expandObsForm(String formName) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.expandObservationTemplate(formName);
     }
 
     @Step("click  <displayControlId> on dashboard, and verify displayed dialog has the following details <table>")
     public void verifyDialogContent(String displayControlId, Table table) {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        DashboardPage dashboardPage = PageFactorySpec.get(DashboardPage.class);
         dashboardPage.clickDisplayControlHeader(displayControlId);
         String displayControlText = dashboardPage.getDialogText(By.cssSelector(".ngdialog-content"));
         for (String drugOrder : table.getColumnValues("details")) {
@@ -180,7 +180,7 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Verify the <template> concept set is <displayType>")
     public void verifyObservationFormContent(String template, String displayType) {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        DashboardPage dashboardPage = PageFactorySpec.get(DashboardPage.class);
         if (displayType.equalsIgnoreCase("not displayed"))
             Assert.assertFalse("Element " + template + " is displayed", dashboardPage.hasElement(By.cssSelector("#concept-set-4")));
         else
@@ -189,7 +189,7 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Verify <formName> is added to the left pane")
     public void verifyObservationFormAddedToLeftPane(String formName) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         WebElement leftPane = observationsPage.getLeftPane();
         List<WebElement> allTabs = leftPane.findElements(By.cssSelector("span"));
         WebElement tab = findWebElementByText(allTabs, formName);
@@ -213,43 +213,43 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Fill <template> template with following observation details <table>")
     public void enterObservations(String template, Table table) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.enterObservations(template, table);
     }
 
     @Step("Enter <template> template with following observation details <table>")
     public void enterObsGroupValue(String template, Table table) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.enterObsGroup(template, table);
     }
 
     @Step("Enter <template> template with all observation details <table>")
     public void enterAllValue(String template, Table table) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.enterAll(template, table);
     }
 
     @Step("Enter <template> template with all observation details with hide label <table>")
     public void enterAllValueWithHideLabel(String template, Table table) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.enterAllWithHideLabel(template, table);
     }
 
     @Step("Click the error message button")
     public void clickOkButton() {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.clickOk();
     }
 
     @Step("Click add Note button")
     public void clickAddNoteButton() {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.clickAddNote();
     }
 
     @Step("Fill Tuberculosis - Followup template with following observation details <table>")
     public void enterTuberculosis(Table table) throws InterruptedException {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.expandObservationTemplate("Tuberculosis - Followup");
         List<TableRow> row = table.getTableRows();
         String[] values = row.get(0).getCell("Adverse Effects").split(":");
@@ -263,59 +263,59 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Navigate back to program dashboard")
     public void navigateBackToDashboard() {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.navigateToDashboard();
         waitForAppReady();
     }
 
     @Step("Enter <value> into control")
     public void enterValueToControl(String value) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.enterValueToFirstInput(value);
     }
 
     @Step("Clear the value in controls")
     public void clearValueOfControl() {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.clearValueToFirstInput();
     }
 
     @Step("Remove Adverse effect from <template> <table>")
     public void removeAdverseEffect(String template, Table data) throws InterruptedException {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.removeAdverseEffect(template, data);
     }
 
     @Step("Add more observation")
     public void addmoreobservation(){
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage= PageFactorySpec.get(ObservationsPage.class);
         observationsPage.addMoreObservation();
         waitForAppReady();
     }
 
     @Step("Add chief complaint on \"History and Examination\" template <table>")
     public void addMoreChiefComplaint(String template,Table table){
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage= PageFactorySpec.get(ObservationsPage.class);
         observationsPage.addChiefComplaints(template,table);
 
     }
 
     @Step("Remove chief complaint on \"History and Examination\" template <table>")
     public void removeChiefComplaint(String template,Table data){
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage= PageFactorySpec.get(ObservationsPage.class);
         observationsPage.removeChiefComplaints(template,data);
     }
 
     @Step("Upload consultation images with Notes on \"History and Examinations\" <table>")
     public void uploadConsultationImage(String template,Table table) throws InterruptedException, IOException, AWTException {
-        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage= PageFactorySpec.get(ObservationsPage.class);
         observationsPage.uploadConsultationImageAndAddComment(template,table);
     }
 
 
     @Step("Remove image <imageNumber> from <History and Examinations> on Consultation page")
     public void removeConsultationImage(Integer imageNumber, String template) {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.expandObservationTemplate(template);
         observationsPage.removeImage(imageNumber);
         waitForAppReady();
@@ -323,7 +323,7 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Verify error message <message> is displayed")
     public void verifyErrorMessage(String message){
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         observationsPage.waitForElementOnPage(By.cssSelector(".error-message-container"));
         Assert.assertEquals("Error popup message dont match", message, observationsPage.findElement(By.cssSelector(".msg")).getText());
     }
@@ -332,7 +332,7 @@ public class ObservationSpec extends BaseSpec {
     public void verifyControlHasProperty(String controlName, String property){
         String cssStyle = parsePropertyToCss(property);
         Assert.assertTrue("Property doesn't exist.", (cssStyle != null));
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         WebElement controlLabel = observationsPage.findLabelByText(controlName);
         WebElement controlSuper = controlLabel.findElement(By.xpath("../.."));
         controlSuper.findElement(By.cssSelector(cssStyle));
@@ -340,7 +340,7 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Verify <controlName> set is <expandedOrCollapsed>")
     public void verifyExpandOrCollapsed(String controlName, String status){
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        ObservationsPage observationsPage = PageFactorySpec.get(ObservationsPage.class);
         WebElement controlLabel = observationsPage.findStrongByText(controlName);
         WebElement controlSuper = controlLabel.findElement(By.xpath("../.."));
         if (status.equalsIgnoreCase("expanded")){

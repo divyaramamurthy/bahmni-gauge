@@ -76,10 +76,9 @@ public class EndTBSpecimen extends Specimen{
         this.laboratoryNameUuid = laboratoryNameUuid;
     }
 
-    public String getSmearResultUuid() {
+   public String getSmearResultUuid() {
         return smearResultUuid;
     }
-
     public void setSmearResultUuid(String smearResultUuid) {
         this.smearResultUuid = smearResultUuid;
     }

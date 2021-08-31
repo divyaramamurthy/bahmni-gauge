@@ -3,7 +3,7 @@ package org.bahmni.gauge.common.specs;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.OrdersPage;
 import org.bahmni.gauge.common.clinical.domain.Order;
 import org.bahmni.gauge.util.TableTransformer;
@@ -15,7 +15,7 @@ public class OrdersPageSpec {
     private OrdersPage ordersPage;
 
     public OrdersPageSpec() {
-        ordersPage = PageFactory.get(OrdersPage.class);
+        ordersPage = PageFactorySpec.get(OrdersPage.class);
     }
 
 

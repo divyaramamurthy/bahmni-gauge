@@ -3,7 +3,7 @@ package org.bahmni.gauge.possible.specs;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.possible.clinical.domain.ObservationForm;
 import org.openqa.selenium.WebElement;
@@ -12,7 +12,7 @@ public class PossibleObservationSpec {
     private final ObservationsPage page;
 
     public PossibleObservationSpec() {
-        this.page = PageFactory.get(ObservationsPage.class);
+        this.page = PageFactorySpec.get(ObservationsPage.class);
     }
 
     @BeforeClassSteps

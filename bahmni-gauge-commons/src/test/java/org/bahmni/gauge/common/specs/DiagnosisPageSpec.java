@@ -5,9 +5,8 @@ import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.DiagnosisPage;
-import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.domain.Diagnosis;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
@@ -22,14 +21,14 @@ public class DiagnosisPageSpec extends BahmniPage {
     @Step("Add following diagnosis <table>")
     public void addCodedDiagnosis(Table table){
         List<Diagnosis> diagnoses=TableTransformer.asEntityList(table, Diagnosis.class);
-        DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
+        DiagnosisPage diagnosisPage= PageFactorySpec.get(DiagnosisPage.class);
 
         diagnosisPage.enterDiagnoses(diagnoses);
 
     }
     @Step("Verify diagnoses on current display control on diagnosis page")
     public void verifyDiagnosesOnCurrentDiagnosis(){
-        DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
+        DiagnosisPage diagnosisPage= PageFactorySpec.get(DiagnosisPage.class);
 
         diagnosisPage.verifyCurrentDisplayControl(getPatientFromSpecStore().getDiagnoses());
     }
@@ -37,7 +36,7 @@ public class DiagnosisPageSpec extends BahmniPage {
     @Step("Edit the following diagnosis <table>")
     public void editDiagnosis(Table table){
         List<Diagnosis> diagnoses=TableTransformer.asEntityList(table, Diagnosis.class);
-        DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
+        DiagnosisPage diagnosisPage= PageFactorySpec.get(DiagnosisPage.class);
         waitForAppReady();
         diagnosisPage.editDiagnoses(diagnoses);
 
@@ -46,13 +45,13 @@ public class DiagnosisPageSpec extends BahmniPage {
     @Step("Delete the following diagnoses <table>")
     public void deleteDiagnoses(Table table){
         List<Diagnosis> diagnoses=TableTransformer.asEntityList(table, Diagnosis.class);
-        DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
+        DiagnosisPage diagnosisPage= PageFactorySpec.get(DiagnosisPage.class);
         diagnosisPage.deleteDiagnoses(diagnoses);
     }
 
     @Step("Remove following Diagnosis <table>")
     public void removeDiagnosis(Table data) {
-        DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
+        DiagnosisPage diagnosisPage= PageFactorySpec.get(DiagnosisPage.class);
         diagnosisPage.removeDiagnosis(data);
     }
     @Step("Add diagnosis through API <table>")
@@ -65,7 +64,7 @@ public class DiagnosisPageSpec extends BahmniPage {
 
     @Step("Verify past diagnoses on current display control on diagnosis page")
     public void verifyPastDiagnosesOnCurrentDiagnosis(){
-        DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
+        DiagnosisPage diagnosisPage= PageFactorySpec.get(DiagnosisPage.class);
 
         diagnosisPage.verifyCurrentDisplayControl(getPatientFromSpecStore().getDiagnoses());
     }

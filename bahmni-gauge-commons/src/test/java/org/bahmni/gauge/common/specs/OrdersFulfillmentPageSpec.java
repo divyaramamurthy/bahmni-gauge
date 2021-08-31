@@ -4,7 +4,7 @@ import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.domain.Order;
 import org.bahmni.gauge.common.orders.OrdersFulfillmentPage;
 
@@ -15,7 +15,7 @@ public class OrdersFulfillmentPageSpec {
 
     public OrdersFulfillmentPageSpec()
     {
-        ordersFulfillmentPage=PageFactory.getOrdersFulfillmentPage();
+        ordersFulfillmentPage= PageFactorySpec.getOrdersFulfillmentPage();
     }
 
     @BeforeClassSteps

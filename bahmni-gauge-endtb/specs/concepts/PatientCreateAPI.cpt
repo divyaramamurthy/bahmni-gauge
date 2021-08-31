@@ -1,5 +1,5 @@
 # Create random patient through API
 
 * Create the following patient using api
-      |prefix|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
-      |EMR|Hanah|Jones|F|20/01/2011|Bilaspur|13892|
+      |patientIdentifier|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
+      |EMR|Jordan|Jones|F|20/01/2001|Bilaspur|13892|

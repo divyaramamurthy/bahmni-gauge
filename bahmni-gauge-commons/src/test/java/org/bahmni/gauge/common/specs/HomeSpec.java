@@ -78,7 +78,7 @@ public class HomeSpec {
         homePage = PageFactory.getHomePage();
         homePage.clickInpatientApp();
         waitForAppReady();
-        PatientListingPage patientListingPage=PageFactory.get(PatientListingPage.class);
+        PatientListingPage patientListingPage= PageFactory.get(PatientListingPage.class);
         if(StoreHelper.getAppGlobal().getBedCount()==0) {
             StoreHelper.getAppGlobal().setBedCount(patientListingPage.getAvailableBedCount());
         }
@@ -154,7 +154,7 @@ public class HomeSpec {
 
     @Step("Logout the user")
     public void logout() {
-        //new BahmniPage().waitForElementOnPage(driver, ".i.icon-bahmni-org.bahmi.gauge.possible.registration");
+        new BahmniPage().waitForElementOnPage(".i.icon-bahmni-org.bahmi.gauge.possible.registration");
         homePage = PageFactory.getHomePage();
         homePage.logout();
     }

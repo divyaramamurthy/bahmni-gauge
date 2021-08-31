@@ -16,7 +16,7 @@ Record Smear Test Results for enrolled patient and validate
 * Go to "Bacteriology" tab
 * Create a bacteriology specimen
     |dateOfSampleCollection|typeOfSample|identifier|smearResult|labIdNumber|
-    |01-11-2016|Sputum|12345|Negative|4321|
+    |2016-09-01T00:00:00.000+05:30|Sputum|12345|Negative|4321|
 * Save the consultation
 * Navigate to patient dashboard
 * click specimenId on dashboard, and verify displayed dialog has the following content
@@ -39,7 +39,7 @@ Record Culture Results for enrolled patient and validate
 * Go to "Bacteriology" tab
 * Create a bacteriology specimen
     |dateOfSampleCollection|typeOfSample|identifier|labIdNumber|cultureResults|
-    |01-11-2016|Sputum|12345|4321|Contaminated|
+    |2016-11-01T00:00:00.000+05:30|Sputum|12345|4321|Contaminated|
 * Save the consultation
 * Navigate to patient dashboard
 * click specimenId on dashboard, and verify displayed dialog has the following content

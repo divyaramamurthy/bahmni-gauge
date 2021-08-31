@@ -4,7 +4,7 @@ import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.formBuilder.FormBuilderPage;
 import org.bahmni.gauge.common.formBuilder.domain.Form;
 import org.bahmni.gauge.data.StoreHelper;
@@ -31,13 +31,13 @@ public class FormBuilderSpec {
 
     @Step("Click create a form")
     public void goToCreateFormDialog() {
-        formBuilderPage = PageFactory.getFormBuilderPage();
+        formBuilderPage = PageFactorySpec.getFormBuilderPage();
         formBuilderPage.clickCreateForm();
     }
 
     @Step("Create a form with name <formName>")
     public void enterFormName(String formName) {
-        formBuilderPage = PageFactory.getFormBuilderPage();
+        formBuilderPage = PageFactorySpec.getFormBuilderPage();
         formBuilderPage.enterName(formName);
         String uuid = getUuid();
         Form form = new Form();
@@ -47,13 +47,13 @@ public class FormBuilderSpec {
 
     @Step("Enter version <versionNumber> of <formName> form details")
     public void enterFormDetail(String versionNumber, String formName) {
-        formBuilderPage = PageFactory.getFormBuilderPage();
+        formBuilderPage = PageFactorySpec.getFormBuilderPage();
         formBuilderPage.clickOnAction(versionNumber, formName);
     }
 
     @Step("Verify version <versionNum> of <formName> form <formProperty> is <value> on form dashboard")
     public void verifyFormPropertyOnFormDashboard(String versionNum, String formName, String formProperty, String value) {
-        formBuilderPage = PageFactory.getFormBuilderPage();
+        formBuilderPage = PageFactorySpec.getFormBuilderPage();
         List<WebElement> allFormProperty = formBuilderPage.findFormByNameAndVersion(versionNum, formName).findElements(By.cssSelector("td"));
 
         verifyFormProperty(formProperty, value, allFormProperty);
@@ -61,7 +61,7 @@ public class FormBuilderSpec {
 
     @Step("Verify version <versionNum> of <formName> form is created On today on form dashboard")
     public void verifyFormCreatedOnToday(String versionNum, String formName) {
-        formBuilderPage = PageFactory.getFormBuilderPage();
+        formBuilderPage = PageFactorySpec.getFormBuilderPage();
         List<WebElement> allFormProperty = formBuilderPage.findFormByNameAndVersion(versionNum, formName).findElements(By.cssSelector("td"));
         String today = String.format("%1$td %1$tb %1$ty", new Date());
         Assert.assertTrue("The created date of this form is not " + today, allFormProperty.get(2).getText().equals(today));

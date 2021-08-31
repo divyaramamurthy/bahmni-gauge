@@ -63,7 +63,6 @@ public class DashboardPage extends BahmniPage {
     @FindBy(how = How.CSS, using = ".patient-gender-age")
     public WebElement patientGenderAndAge;
 
-
     public void selectDashboard(String name) {
         for (WebElement dashboardLink : driver.findElements(By.cssSelector(".tab-item a"))) {
             if (dashboardLink != null && dashboardLink.getText().trim().equals(name)) {

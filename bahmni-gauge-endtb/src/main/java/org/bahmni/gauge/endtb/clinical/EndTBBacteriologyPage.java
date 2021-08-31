@@ -104,6 +104,6 @@ public class EndTBBacteriologyPage extends BacteriologyPage{
     }
 
 
-
-
+    /*public org.bahmni.gauge.common.registration.domain.Patient getPatientFromSpecStore() {
+    }*/
 }

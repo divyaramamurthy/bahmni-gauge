@@ -53,7 +53,7 @@ public class DrugRegimenTest {
         initMocks(this);
     }
 
-    @Test
+    /*@Test
     public void ensureThatTitleIsReturnedProperly() {
         DrugRegimen drugRegimen = new DrugRegimen(regimenElement);
         when(regimenElement.findElement(By.tagName("h2"))).thenReturn(headerElement);
@@ -120,5 +120,5 @@ public class DrugRegimenTest {
 
         List<DrugRegimenRow> rows = drugRegimen.getDrugRegimenRows();
         assertEquals(rows.size(),0);
-    }
+    }*/
 }

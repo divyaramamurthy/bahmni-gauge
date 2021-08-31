@@ -5,7 +5,7 @@ import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.BacteriologyPage;
 import org.bahmni.gauge.common.clinical.domain.Specimen;
 import org.bahmni.gauge.util.TableTransformer;
@@ -17,7 +17,7 @@ public class BacteriologyPageSpec{
     private BacteriologyPage bacteriologyPage;
 
     public BacteriologyPageSpec(){
-        bacteriologyPage= PageFactory.getBacteriologyPage();
+        bacteriologyPage= PageFactorySpec.getBacteriologyPage();
 
     }
 
@@ -36,7 +36,7 @@ public class BacteriologyPageSpec{
     @Step("Edit Sample with row number <rowNumber> as following <table>")
     public void editRow(int rowNumber,Table table){
         Specimen specimen=TableTransformer.asEntity(table, Specimen.class);
-        BacteriologyPage bacteriologyPage= PageFactory.get(BacteriologyPage.class);
+        BacteriologyPage bacteriologyPage= PageFactorySpec.get(BacteriologyPage.class);
         bacteriologyPage.editSample(rowNumber,specimen);
         bacteriologyPage.getPatientFromSpecStore().getSpecimens().set(rowNumber-1,specimen);
 
@@ -45,7 +45,7 @@ public class BacteriologyPageSpec{
 
     @Step("Delete Sample with row number <rowNumber>")
     public void deleteRow(int rowNumber){
-        BacteriologyPage bacteriologyPage= PageFactory.get(BacteriologyPage.class);
+        BacteriologyPage bacteriologyPage= PageFactorySpec.get(BacteriologyPage.class);
         bacteriologyPage.deleteSample(rowNumber);
         bacteriologyPage.getPatientFromSpecStore().getSpecimens().remove(rowNumber-1);
 

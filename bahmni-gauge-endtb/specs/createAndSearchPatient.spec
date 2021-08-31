@@ -13,10 +13,8 @@ Tags: sanity
 * Click on registration app
 * Click on create new patient link
 * Create the following patient
-
-    |prefix|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
-    |EMR|Super|Woman|Female|20/01/2011|Bilaspur|13892|
-
+    |Patient Identifier|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
+    |EMR|Super|Man|M|2011-01-20T00:00:00.000+05:30|Bilaspur|13892|
 * Logout the user
 
 
@@ -31,15 +29,13 @@ Tags: sanity
 * Click on registration app
 * Click on create new patient link
 * Create the following patient
-
-    |prefix|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
-    |EMR|John|Smith|Male|20/01/2011|Bilaspur|13892|
+    |patientIdentifier|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
+    |EMR|Super|Woman|F|2001-01-20T00:00:00.000+05:30|Bilaspur|13893|
 
 * Click on create new patient link
 * Create the following patient with ID as recently created Patient
-
-    |prefix|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
-    |EMR|John|Smith|Male|20/01/2011|Bilaspur|13892|
+    |patientIdentifier|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
+    |EMR|Super|Woman|F|2001-01-20T00:00:00.000+05:30|Bilaspur|13893|
 * Verify the patient creation fails
 * Logout the user
 
@@ -50,7 +46,7 @@ Tags: sanity
 
 * Create random patient through API
 * On the login page
-* Login with username "BAHMNI_GAUGE_MSF_USER" and password "BAHMNI_GAUGE_MSF_PASSWORD"
+* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD"
 * Verify Login Page
 * Click on registration app
 * Click on search patient link

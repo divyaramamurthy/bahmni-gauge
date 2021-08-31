@@ -27,7 +27,7 @@ public class ObsDisplayControlTest {
 		initMocks(this);
 	}
 
-	@Test
+	/*@Test
 	public void ensureThatTitleIsReturnedProperly() {
 		ObsDisplayControl obsDisplayControl = new ObsDisplayControl(displayControlElement);
 		when(displayControlElement.findElement(By.tagName("h2"))).thenReturn(headerElement);
@@ -51,6 +51,6 @@ public class ObsDisplayControlTest {
 		when(displayControlElement.findElement(By.xpath("//p[@translate='DISPLAY_CONTROL_ERROR_MESSAGE_KEY']")))
 				.thenReturn(null);
 		assertNull(obsDisplayControl.getNoRecordsFoundText());
-	}
+	}*/
 
 }

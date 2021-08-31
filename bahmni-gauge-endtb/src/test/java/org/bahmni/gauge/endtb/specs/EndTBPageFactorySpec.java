@@ -3,7 +3,7 @@ package org.bahmni.gauge.endtb.specs;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.endtb.clinical.EndTBBacteriologyPage;
 
-public class EndTBPageFactory extends PageFactory {
+public class EndTBPageFactorySpec extends PageFactory {
 
 
     private static final String EndTB_BACTERIOLOGY_PAGE = "endtb.clinical.bacteriology";

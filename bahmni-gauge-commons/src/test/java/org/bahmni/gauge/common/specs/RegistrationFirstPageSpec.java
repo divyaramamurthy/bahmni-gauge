@@ -5,7 +5,7 @@ import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.RegistrationSearch;
 import org.bahmni.gauge.common.registration.domain.Patient;
@@ -24,7 +24,7 @@ public class RegistrationFirstPageSpec {
 
 	public RegistrationFirstPageSpec() {
 		this.driver = DriverFactory.getDriver();
-		this.registrationFirstPage = PageFactory.getRegistrationFirstPage();
+		this.registrationFirstPage = PageFactorySpec.getRegistrationFirstPage();
 	}
 
 	@BeforeClassSteps
@@ -66,7 +66,7 @@ public class RegistrationFirstPageSpec {
 
 	@Step("Create the following patient with ID as recently created Patient <table>")
 	public void createPatientsWithExistingID(Table table) throws Exception {
-        RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
+        RegistrationSearch registrationSearch = PageFactorySpec.get(RegistrationSearch.class);
 		String recentlyCreatedPatientID = registrationSearch.getPatientFromSpecStore().getIdNumber();
 		table.getTableRows().get(0).addCell("idNumber", recentlyCreatedPatientID);
 		table.getColumnNames().add(1,"idNumber");

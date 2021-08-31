@@ -6,7 +6,7 @@ import com.thoughtworks.gauge.Table;
 
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.ConsultationTabPage;
 import org.bahmni.gauge.common.clinical.domain.Disposition;
 import org.bahmni.gauge.data.StoreHelper;
@@ -21,7 +21,7 @@ public class ConsultationTabPageSpec {
     ConsultationTabPage consultationTabPage;
 
     public ConsultationTabPageSpec() {
-        consultationTabPage = PageFactory.getConsultationTabPage();
+        consultationTabPage = PageFactorySpec.getConsultationTabPage();
     }
 
     @BeforeClassSteps
@@ -36,7 +36,7 @@ public class ConsultationTabPageSpec {
 
     @Step("Verify display control with Caption <displayControlCaption> on <tab name> tab, has the following details <table>")
     public void verifyDisplayControlOnTabWithCaption(String displayControlCaption, String tab, Table table) {
-        ConsultationTabPage consultationTabPage = PageFactory.get(ConsultationTabPage.class);
+        ConsultationTabPage consultationTabPage = PageFactorySpec.get(ConsultationTabPage.class);
         String displayControlText = consultationTabPage.getDisplayControlTextWithCaption(displayControlCaption);
         for (String data : table.getTableRows().get(0).getCellValues()) {
             data = StringUtil.transformPatternToData(data);

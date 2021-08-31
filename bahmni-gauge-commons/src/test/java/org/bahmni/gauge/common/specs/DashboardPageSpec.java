@@ -4,7 +4,7 @@ import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
 import org.bahmni.gauge.common.home.HomePage;
@@ -25,7 +25,7 @@ public class DashboardPageSpec {
     DashboardPage dashboardPage;
 
     public DashboardPageSpec() {
-        dashboardPage = PageFactory.get(DashboardPage.class);
+        dashboardPage = PageFactorySpec.get(DashboardPage.class);
     }
 
     @BeforeClassSteps
@@ -119,8 +119,8 @@ public class DashboardPageSpec {
 
     @Step("Ensure that the program is updated on patient program dashboard")
     public void verifyProgramUpdatedOnDashboard() {
-        Program program = PageFactory.getProgramManagementPage().getProgramFromSpecStore();
-        PageFactory.getProgramDashboardPage().validateProgramsDisplayControl(program);
+        Program program = PageFactorySpec.getProgramManagementPage().getProgramFromSpecStore();
+        PageFactorySpec.getProgramDashboardPage().validateProgramsDisplayControl(program);
     }
 
     @Step("Verify details on dashboard <Programs> display control")
@@ -184,5 +184,11 @@ public class DashboardPageSpec {
     public void uploadConsultationImagesWithNotesOn(Object arg0, Object arg1) {
         throw new UnsupportedOperationException("Provide custom implementation");
     }
+
+    @Step("Logout User from DashboardPage")
+    public void logoutUserfromDashboardPage(){
+
+    }
+
 
 }

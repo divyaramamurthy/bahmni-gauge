@@ -6,7 +6,7 @@ import com.thoughtworks.gauge.Table;
 
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.clinical.VisitPage;
 import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
 import org.bahmni.gauge.rest.BahmniRestClient;
@@ -30,26 +30,26 @@ public class RegistrationVisitPageSpec {
 
     @Step("Close visit")
     public void closeVisit() {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.getRegistrationVisitPage();
         registrationVisitPage.closeVisit(driver);
     }
 
     @Step("Try close visit")
     public void tryCloseVisit() {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.getRegistrationVisitPage();
         registrationVisitPage.tryCloseVisit();
     }
 
     @Step("Navigate to latest visit page")
     public void navigateToVisit() {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.getRegistrationVisitPage();
         registrationVisitPage.openLastVisit();
         waitForAppReady();
     }
 
     @Step("Verify display control <displayControl> on visit page, has the following details <table>")
     public void verifyDisplayControlOnVisitPage(String displayControl, Table table) {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.getRegistrationVisitPage();
         String displayControlText = registrationVisitPage.getDisplayControlText(displayControl);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
@@ -59,7 +59,7 @@ public class RegistrationVisitPageSpec {
 
     @Step("Verify display control with Caption <displayControlCaption> on visit page, has the following details <table>")
     public void verifyDisplayControlOnVisitPageWithCaption(String displayControlCaption, Table table) {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.getRegistrationVisitPage();
         String displayControlText = registrationVisitPage.getDisplayControlTextWithCaption(displayControlCaption);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
@@ -69,7 +69,7 @@ public class RegistrationVisitPageSpec {
 
     @Step("Verify display control with Caption <displayControlCaption> on visit page, with labels and details <table>")
     public void verifyDisplayControlOnVisitPageWithCaptionAndLable(String displayControlCaption, Table table) {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.getRegistrationVisitPage();
         String displayControlText = registrationVisitPage.getDisplayControlTextWithCaption(displayControlCaption);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
@@ -79,20 +79,20 @@ public class RegistrationVisitPageSpec {
 
     @Step("Verify details on visit page <Disposition> display control")
     public void selectDisplayControl(String name) {
-        VisitPage visitPage = PageFactory.get(VisitPage.class);
+        VisitPage visitPage = PageFactorySpec.get(VisitPage.class);
         visitPage.selectDisplayControl(name);
     }
 
     @Step("Verify Error popup with message <message> is displayed")
     public void verifyErrorOnPageWithMessage(String message) {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.getRegistrationVisitPage();
         registrationVisitPage.waitForElementOnPage(By.cssSelector(".error-message-container"));
         Assert.assertEquals("Error popup message dont match", message, registrationVisitPage.findElement(By.cssSelector("#view-content .msg")).getText());
     }
 
     @Step("Open visit of type <visitType> in <visitLocation> location for previous patient using api")
     public void openVisitThroughApi(String visitType, String visitLocation) {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.getRegistrationVisitPage();
         registrationVisitPage.getPatientFromSpecStore().setLocation(System.getenv(visitLocation));
         registrationVisitPage.getPatientFromSpecStore().setVisitType(visitType);
         BahmniRestClient.get().create(registrationVisitPage.getPatientFromSpecStore(), "visit");
@@ -101,7 +101,7 @@ public class RegistrationVisitPageSpec {
 
     @Step("Enter visit details through API <table>")
     public void enterVisitDetailsThroughAPI(Table table) {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.getRegistrationVisitPage();
         registrationVisitPage.getPatientFromSpecStore().setHeight(table.getColumnValues("height").get(0));
         registrationVisitPage.getPatientFromSpecStore().setWeight(table.getColumnValues("weight").get(0));
         registrationVisitPage.getPatientFromSpecStore().setRegistrationFee(table.getColumnValues("registrationFee").get(0));
@@ -112,7 +112,7 @@ public class RegistrationVisitPageSpec {
 
     @Step("Open <tabCaption> tab on visit page")
     public void openTab(String tabCaption) {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.getRegistrationVisitPage();
         registrationVisitPage.openTab(tabCaption);
     }
 

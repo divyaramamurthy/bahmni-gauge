@@ -4,7 +4,7 @@ import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.admin.OrderSetPage;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
 import org.bahmni.gauge.common.admin.domain.OrderSetMember;
@@ -24,7 +24,7 @@ public class OrderSetPageSpec {
 
     @Step("Create orderset and enter following orderset details <table>")
     public void fillOrderSetDetais(Table table){
-        orderSetPage= PageFactory.get(OrderSetPage.class);
+        orderSetPage= PageFactorySpec.get(OrderSetPage.class);
         orderSetPage.enterDetails(orderSetPage.transformTableToOrderSet(table));
     }
 
@@ -72,7 +72,7 @@ public class OrderSetPageSpec {
     @Step("Create orderset <namePrefix>, description <description>, operator <operator> with following members using api <table>")
     public void createOrderSetUsingApi(String namePrefix, String description, String operator, Table orderSetMembers){
 
-        orderSetPage= PageFactory.get(OrderSetPage.class);
+        orderSetPage= PageFactorySpec.get(OrderSetPage.class);
         OrderSet orderSet=createOrderSet(namePrefix,description,operator);
 
         for(OrderSetMember orderSetMember : orderSetPage.transformTableToOrderSetMembers(orderSetMembers))
@@ -87,7 +87,7 @@ public class OrderSetPageSpec {
 
     @Step("Edit previous orderset as <namePrefix>, description <description>, operator <operator> with following details <table>")
     public void editOrderSet(String namePrefix, String description, String operator, Table orderSetMembers){
-        orderSetPage= PageFactory.get(OrderSetPage.class);
+        orderSetPage= PageFactorySpec.get(OrderSetPage.class);
         OrderSet orderSet=new BahmniPage().getOrderSetInSpecStore();
 
         TableTransformer.updateEntityProperty(orderSet,"name",namePrefix);
@@ -108,7 +108,7 @@ public class OrderSetPageSpec {
 
     @Step("Verify previous orderset")
     public void verifyOrderSet(){
-        orderSetPage= PageFactory.get(OrderSetPage.class);
+        orderSetPage= PageFactorySpec.get(OrderSetPage.class);
         OrderSet orderSet=new BahmniPage().getOrderSetInSpecStore();
         orderSetPage.verifyOrderSet(orderSet);
 

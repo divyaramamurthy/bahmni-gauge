@@ -11,7 +11,7 @@ import org.bahmni.gauge.amman.registration.domain.Fields;
 import org.bahmni.gauge.amman.registration.domain.PatientAttribute;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class RegistrationSpec {
     private AmmanPatient ammanPatient = new AmmanPatient();
-    private AmmanRegistrationPage registrationPage = (AmmanRegistrationPage) PageFactory.get(AmmanRegistrationPage.class);
+    private AmmanRegistrationPage registrationPage = (AmmanRegistrationPage) PageFactorySpec.get(AmmanRegistrationPage.class);
 
     @BeforeClassSteps
     public void waitForAppReady() {
@@ -49,7 +49,7 @@ public class RegistrationSpec {
         registrationPage.showAllVisitTypeOptions();
         registrationPage.findVisit(visitType).click();
         waitForAppReady();
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.get(RegistrationVisitDetailsPage.class);
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactorySpec.get(RegistrationVisitDetailsPage.class);
         registrationVisitPage.saveButton.click();
     }
 

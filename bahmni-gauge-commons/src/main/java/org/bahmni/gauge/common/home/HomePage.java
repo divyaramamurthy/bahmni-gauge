@@ -33,10 +33,10 @@ public class HomePage extends BahmniPage {
 	@FindBy(how= How.CSS, using = "i.icon-bahmni-program")
     public WebElement programs;
 
-	@FindBy(how = How.CSS, using = "i.fa-caret-down")
+	@FindBy(how = How.CSS, using = ".fa-caret-down")
 	public WebElement user_info;
 
-	@FindBy(how= How.CSS, using = "i.fa-power-off")
+	@FindBy(how= How.CSS, using = ".fa-power-off")
 	public WebElement logout;
 
 	@FindBy(how = How.PARTIAL_LINK_TEXT, using = "Clinical")

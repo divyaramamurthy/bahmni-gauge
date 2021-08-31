@@ -225,7 +225,8 @@ public class Patient extends Model {
 
     public void setDateOfBirth(String dateOfBirth) throws ParseException {
         SimpleDateFormat userFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat serverFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        SimpleDateFormat serverFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        //SimpleDateFormat serverFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
         this.dateOfBirth = serverFormat.format(userFormat.parse(dateOfBirth));
     }
 

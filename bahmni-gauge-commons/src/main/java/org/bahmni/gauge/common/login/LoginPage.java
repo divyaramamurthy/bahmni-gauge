@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class LoginPage extends BahmniPage{
 
-	public static final String LOGIN_URL = BASE_URL.concat("/home");
+	public static final String LOGIN_URL = BASE_URL.concat("/bahmni/home/index.html#/login");
 	
 	@FindBy(how= How.CSS, using = "#username")
     public WebElement txtUserName;
@@ -26,11 +26,11 @@ public class LoginPage extends BahmniPage{
     public WebElement btnLogin;
 
 	public void login(String username, String password){
-        login(username,password,System.getenv("BAHMNI_GAUGE_APP_LOCATION"),"English");
+        login(username,password,System.getenv("BAHMNI_GAUGE_APP_LOCATION"),"en");
 	}
 
     public void login(String username, String password, String location){
-        login(username,password,location,"English");
+        login(username,password,location,"en");
     }
 
     public void login(String username, String password, String location, String locale){

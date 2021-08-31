@@ -4,7 +4,7 @@ import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.bahmni.gauge.common.formBuilder.ImplementerInterfacePage;
 import org.openqa.selenium.WebDriver;
 
@@ -23,7 +23,7 @@ public class ImplementerInterfaceSpec {
 
     @Step("Click on form builder app")
     public void goToFormBuilderPage() {
-        implementerInterfacePage = PageFactory.getImplementerInterfacePage();
+        implementerInterfacePage = PageFactorySpec.getImplementerInterfacePage();
         implementerInterfacePage.clickFormBuilderApp();
     }
 }

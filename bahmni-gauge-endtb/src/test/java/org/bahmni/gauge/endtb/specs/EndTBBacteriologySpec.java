@@ -8,10 +8,10 @@ import org.bahmni.gauge.common.clinical.domain.Specimen;
 import org.bahmni.gauge.common.login.LoginPage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.endtb.clinical.EndTBBacteriologyPage;
 import org.bahmni.gauge.endtb.clinical.domain.EndTBSpecimen;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
-import org.bahmni.gauge.endtb.clinical.EndTBBacteriologyPage;
 import org.openqa.selenium.By;
 
 import java.util.List;
@@ -20,23 +20,24 @@ import java.util.Map;
 public class EndTBBacteriologySpec {
 
 
-    private EndTBBacteriologyPage bacteriologyPage;
+    public EndTBBacteriologyPage bacteriologyPage;
     PageFactory pageFactory;
 
 
     public EndTBBacteriologySpec(){
-        bacteriologyPage = EndTBPageFactory.getEndTbBacteriologyPage();
+        bacteriologyPage = EndTBPageFactorySpec.getEndTbBacteriologyPage();
 
     }
 
     @Step("Create a bacteriology specimen smear result <table>")
     public void createBacteriologySmearResult(Table table){
         LoginPage page = pageFactory.get(LoginPage.class);
-
+        //BacteriologyPage page = pageFactory.get(BacteriologyPage.class);
         EndTBSpecimen specimen = TableTransformer.asEntity(table,EndTBSpecimen.class);
-        specimen.setTypeOfVisitUuid(getConceptAnswerUuidForConceptName("Bacteriology, Type of Visit", specimen.getTypeOfVisit()));
+        System.out.println("Text Divya:" +specimen);
+        specimen.setTypeOfVisitUuid(getConceptAnswerUuidForConceptName("Bacteriology, Type of visit", specimen.getTypeOfVisit()));
         specimen.setLaboratoryNameUuid(getConceptAnswerUuidForConceptName("Bacteriology, Laboratory Name", specimen.getLaboratoryName()));
-        specimen.setSmearResultUuid(getConceptAnswerUuidForConceptName("Bacteriology, Smear result", specimen.getSmearResult()));
+        //specimen.setSmearResultUuid(getConceptAnswerUuidForConceptName("Bacteriology, Smear result", specimen.getSmearResult()));
 
         Patient patient = page.getPatientFromSpecStore();
         PatientProgram patientProgram = page.getPatientProgramFromSpecStore();
@@ -46,9 +47,11 @@ public class EndTBBacteriologySpec {
 
     private String getConceptAnswerUuidForConceptName(String conceptName, String answerName){
         Map<String,String> answers = BahmniRestClient.get().getConceptAnswersForConceptName(conceptName);
-
+        // System.out.println("Text:" +answers);
         if(!answers.containsKey(answerName)){
+          //  System.out.println("Text:" +answers);
             throw new IllegalArgumentException("The answer ["+ answerName+"] is invalid for the concept ["+conceptName+"]");
+
         }
 
         return answers.get(answerName);
@@ -56,6 +59,7 @@ public class EndTBBacteriologySpec {
 
     @Step("Create a bacteriology specimen <table> ")
     public void createBacteriologySpecimen(Table table) {
+      //  BacteriologyPage bacteriologyPage1 = PageFactory.get(BacteriologyPage.class);
         List<Specimen> specimens = TableTransformer.asEntityList(table, Specimen.class);
         bacteriologyPage.addSamples(specimens);
         bacteriologyPage.getPatientFromSpecStore().setSpecimens(specimens);

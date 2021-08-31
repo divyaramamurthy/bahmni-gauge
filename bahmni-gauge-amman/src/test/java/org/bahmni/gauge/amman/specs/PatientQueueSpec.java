@@ -7,7 +7,7 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.amman.clinical.PatientQueuePage;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.PageFactorySpec;
 import org.junit.Assert;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class PatientQueueSpec {
 
     @Step("Search and select patient <patient> from <queue> queue")
     public void selectPatientFromProgramTab(String patientName, String queueName) {
-        PatientQueuePage patientQueuePage = PageFactory.get(PatientQueuePage.class);
+        PatientQueuePage patientQueuePage = PageFactorySpec.get(PatientQueuePage.class);
         patientQueuePage.clickTab(queueName);
         patientQueuePage.enterPatientIDOrName(patientName);
         patientQueuePage.selectPatientFromQueue(patientName);
@@ -28,14 +28,14 @@ public class PatientQueueSpec {
 
     @Step("Search patient <patientName> from <queue> queue")
     public void searchPatientFromTab(String patientName, String queueName) {
-        PatientQueuePage patientQueuePage = PageFactory.get(PatientQueuePage.class);
+        PatientQueuePage patientQueuePage = PageFactorySpec.get(PatientQueuePage.class);
         patientQueuePage.clickTab(queueName);
         patientQueuePage.enterPatientIDOrName(patientName);
     }
 
     @Step("Verify patient details of <patientName> in queue <table>")
     public void verifyPatientDetailsinQueue(String patientName, Table table) {
-        PatientQueuePage patientQueuePage = PageFactory.get(PatientQueuePage.class);
+        PatientQueuePage patientQueuePage = PageFactorySpec.get(PatientQueuePage.class);
         List<String> columnNames = table.getColumnNames();
         TableRow requiredRow = null;
         for (TableRow row : table.getTableRows()) {
@@ -59,13 +59,13 @@ public class PatientQueueSpec {
 
     @Step("Verify patient <Kasm> is present only in <Awaiting Validation - 1st Stage > following queue")
     public void implementation1(String patientName, String queueName) {
-        PatientQueuePage patientQueuePage = PageFactory.get(PatientQueuePage.class);
+        PatientQueuePage patientQueuePage = PageFactorySpec.get(PatientQueuePage.class);
         Assert.assertTrue(patientQueuePage.isPatientPresentOnlyInGivenTab(patientName, queueName));
     }
 
     @Step("Verify patient <Kasm> is not present in any queue")
     public void implementation2(String patientName) {
-        PatientQueuePage patientQueuePage = PageFactory.get(PatientQueuePage.class);
+        PatientQueuePage patientQueuePage = PageFactorySpec.get(PatientQueuePage.class);
         Assert.assertTrue(patientQueuePage.isNotPatientPresentInAnyTab(patientName));
     }
 }

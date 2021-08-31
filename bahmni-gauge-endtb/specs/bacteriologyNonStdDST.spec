@@ -15,7 +15,7 @@ Record Bacteriology Non Std DST  Results for enrolled patient and validate
 * Go to "Bacteriology" tab
 * Create a bacteriology specimen
     |dateOfSampleCollection|typeOfSample|identifier|labIdNumber|MICInterpretation|
-    |01-11-2016|Sputum|12345|4321|Susceptible|
+    |2016-09-01T00:00:00.000+05:30|Sputum|12345|4321|Susceptible|
 * Save the consultation
 * Navigate to patient dashboard
 * click specimenId on dashboard, and verify displayed dialog has the following content
